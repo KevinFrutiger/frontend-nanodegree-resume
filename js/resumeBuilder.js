@@ -55,12 +55,13 @@ bio.display = function() {
   }
   
   var $header = $('#header');
-  $header.prepend(formattedBioPic)
-         .prepend(formattedWelcomeMessage)
-         .prepend(formattedRole)
+  $header.prepend(formattedRole)
          .prepend(formattedName);
 
   $('#topContacts').append(formattedContacts.join(''))
+
+  $header.append(formattedBioPic)
+         .append(formattedWelcomeMessage)
 
   $header.append(HTMLskillsStart)
          .find('#skills')
