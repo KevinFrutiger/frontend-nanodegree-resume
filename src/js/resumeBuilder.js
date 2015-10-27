@@ -1,36 +1,39 @@
 /**
- * Note: contrary to techniques suggested in the course, I'm always using 
- * for loops instead of for...in loops to loop over arrays, to assure 
+ * Note: contrary to techniques suggested in the course, I'm always using
+ * for loops instead of for...in loops to loop over arrays, to assure
  * proper order, etc.
  * http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#for-in_loop
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
  */
 
-// Set up JSON objects for bio, work, projects, and education.
+// Set up JSON objects for bio, work, projects, and education. Note these are
+// required to be valid JSON objects. Hence they use double-quotes and ignore
+// 80-column line wrap.
 
 var bio = {
   "name": "Kevin Frutiger",
   "role": "Front-end Web Developer",
   "contacts": {
-    "mobile": "",
+    "mobile": "650-866-5380",
     "email": "webmessage@frutigergroup.com",
-    "github": "@KevinFrutiger",
+    "github": "KevinFrutiger",
     "twitter": "@KevinFrutiger",
     "location": "South San Francisco, CA"
   },
-  "welcomeMessage": "I am a front-end Web and media developer, with an eye for motion and design. Having worked in both creative and technical roles, I am driven by a fondness for code and a love of animation and video.",
-  "skills": ["HTML5", "CSS", "JavaScript", "SVG", "Flash CC", "Photoshop CC", 
-             "Premiere Pro CC", "Illustrator CC"],
-  "biopic": "images/fry.jpg"
+  "welcomeMessage": "Front-end Web and Multimedia Developer with a creative and technical aptitude. Proficient in scripting languages and multimedia production tools. Experienced collaborating in global, cross-functional teams.",
+  "skills": ["HTML5", "CSS", "SASS", "Bootstrap", "JavaScript", "jQuery", "Git",
+             "Grunt", "Flash CC", "Photoshop CC", "Premiere Pro CC",
+             "Illustrator CC", "Blender"],
+  "biopic": "images/kevin-frutiger@1x.jpg"
 };
 
 bio.display = function() {
   var formattedName = HTMLheaderName.replace('%data%', bio.name);
   var formattedRole = HTMLheaderRole.replace('%data%', bio.role);
   var formattedBioPic = HTMLbioPic.replace('%data%', bio.biopic);
-  var formattedWelcomeMessage = HTMLwelcomeMsg.replace('%data%', 
+  var formattedWelcomeMessage = HTMLwelcomeMsg.replace('%data%',
                                                        bio.welcomeMessage);
-  
+
   var formattedContacts = [];
   if (bio.contacts.mobile) {
     formattedContacts.push(HTMLmobile.replace('%data%', bio.contacts.mobile));
@@ -45,15 +48,19 @@ bio.display = function() {
     formattedContacts.push(HTMLtwitter.replace('%data%', bio.contacts.twitter));
   }
   if (bio.contacts.location) {
-    formattedContacts.push(HTMLlocation.replace('%data%', 
+    formattedContacts.push(HTMLlocation.replace('%data%',
                                                  bio.contacts.location));
   }
 
   var formattedSkills = [];
+
+  /* Class note: I'm setting the variable len to avoid JS recalculating the
+     the length of the array on each loop. It's something I've aready been doing
+   */
   for (var i = 0, len = bio.skills.length; i < len; i++) {
     formattedSkills.push(HTMLskills.replace('%data%', bio.skills[i]));
   }
-  
+
   var $header = $('#header');
   $header.prepend(formattedRole)
          .prepend(formattedName);
@@ -73,7 +80,7 @@ var education = {
     {
       "name": "Wichia State University",
       "location": "Wichita, KS",
-      "degree": "BFA",
+      "degree": "Bachelor of Fine Arts",
       "majors": ["Graphic Design"],
       "dates": 2005,
       "url": "http://www.wichita.edu/"
@@ -81,14 +88,19 @@ var education = {
     {
       "name": "Art Institute of Colorado",
       "location": "Denver, CO",
-      "degree": "Associates",
+      "degree": "Associate of Applied Science",
       "majors": ["Computer Animation"],
       "dates": 1999,
       "url": "https://www.artinstitutes.edu/denver/"
     }
   ],
   "onlineCourses": [
-  
+    {
+      "title": "Front-End Web Developer Nanodegree",
+      "school": "Udacity",
+      "dates": 2016,
+      "url": "https://www.udacity.com/"
+    }
   ]
 };
 
@@ -144,14 +156,51 @@ education.display = function() {
   }
 };
 
+// TODO: Replace descriptions with bulleted lists from resume doc after
+// rendering code is updated to accept them.
 var work = {
   "jobs": [
     {
       "employer": "Google",
       "title": "Technical Vendor Program Manager",
       "location": "San Francisco, CA",
-      "dates": "March 2008 – February 2015",
-      "description": "This is the description."
+      "dates": "Oct 2013 – February 2015",
+      "description": "Managed technical vendor programs to support global, top-tier DoubleClick Rich Media and AdWords Display Ad Builder customers."
+    },
+    {
+      "employer": "Google",
+      "title": "Creative Technical Specialist",
+      "location": "San Francisco, CA",
+      "dates": "Oct 2011 – February 2013",
+      "description": "Provided DoubleClick Studio technical consultation and troubleshooting for creative and media agencies. Created build guides and video training for core and advanced features of Studio to scale support, including Fundamentals, Dynamic Creative, and VPAID."
+    },
+    {
+      "employer": "Google",
+      "title": "Rich Media Production Specialist",
+      "location": "San Francisco, CA",
+      "dates": "March 2008 – Oct 2013",
+      "description": "Updated clients’ ActionScript for deployment in DoubleClick Studio."
+    },
+    {
+      "employer": "Dish Network",
+      "title": "Instructional Media Developer",
+      "location": "San Francisco, CA",
+      "dates": "Oct 2007 – March 2008",
+      "description": "Created e-learning simulations, interactions, and animations with ActionScript, Flash, Photoshop, and Blender."
+    },
+    {
+      "employer": "CleverMedia",
+      "title": "Flash Game Programmer (contract)",
+      "location": "Denver, CO",
+      "dates": "March 2007 – Oct 2007",
+      "description": "Utilized ActionScript to realize clients’ game concepts."
+    },
+    {
+      "employer": "Active Education",
+      "title": "Instructional Media Developer",
+      "location": "Denver, CO",
+      "dates": "Oct 2004 – March 2007",
+      "description": "Utilized ActionScript to realize clients’ game concepts."
     }
   ]
 };
@@ -180,7 +229,38 @@ work.display = function() {
 };
 
 var projects = {
-  
+  projects: [
+    {
+      "title": "Project 1",
+      "dates": "2015",
+      "description": "This is Project 1’s description.",
+      "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
+    },
+    {
+      "title": "Project 2",
+      "dates": "2015",
+      "description": "This is Project 2’s description.",
+      "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
+    },
+    {
+      "title": "Project 3",
+      "dates": "2015",
+      "description": "This is Project 3’s description.",
+      "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
+    },
+    {
+      "title": "Project 4",
+      "dates": "2015",
+      "description": "This is Project 4’s description.",
+      "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
+    },
+    {
+      "title": "Project 5",
+      "dates": "2015",
+      "description": "This is Project 5’s description.",
+      "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
+    }
+  ]
 };
 
 projects.display = function() {
@@ -203,7 +283,7 @@ projects.display = function() {
       formattedImages.push(HTMLprojectImage.replace('%data%', project.images));
     }
 
-    
+
     var $project = $(HTMLprojectStart);
     $project.append(formattedTitle)
             .append(formattedDates)
@@ -219,6 +299,30 @@ bio.display();
 work.display();
 projects.display();
 education.display();
+
+// Populate "Let's Connect" footer
+$footer = $('#footerContacts');
+
+var formattedContacts = [];
+if (bio.contacts.mobile) {
+  formattedContacts.push(HTMLmobile.replace('%data%', bio.contacts.mobile));
+}
+if (bio.contacts.email) {
+  formattedContacts.push(HTMLemail.replace('%data%', bio.contacts.email));
+}
+if (bio.contacts.github) {
+  formattedContacts.push(HTMLgithub.replace('%data%', bio.contacts.github));
+}
+if (bio.contacts.twitter) {
+  formattedContacts.push(HTMLtwitter.replace('%data%', bio.contacts.twitter));
+}
+if (bio.contacts.location) {
+  formattedContacts.push(HTMLlocation.replace('%data%',
+                                               bio.contacts.location));
+}
+
+$footer.append(formattedContacts);
+console.log($footer);
 
 // Add a map
 $('#mapDiv').append(googleMap);
