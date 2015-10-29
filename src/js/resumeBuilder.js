@@ -18,9 +18,9 @@ var bio = {
     "email": "webmessage@frutigergroup.com",
     "github": "KevinFrutiger",
     "twitter": "@KevinFrutiger",
-    "location": "South San Francisco, CA"
+    "location": "South San Francisco, CA, USA"
   },
-  "welcomeMessage": "Front-end Web and Multimedia Developer with a creative and technical aptitude. Proficient in scripting languages and multimedia production tools. Experienced collaborating in global, cross-functional teams.",
+  "welcomeMessage": "Front-end Web Developer with creative skills in addition to technical skills. Proficient in scripting languages and multimedia production tools. Experienced collaborating in global, cross-functional teams.",
   "skills": ["HTML5", "CSS", "SASS", "Bootstrap", "JavaScript", "jQuery", "Git",
              "Grunt", "Flash CC", "Photoshop CC", "Premiere Pro CC",
              "Illustrator CC", "Blender"],
@@ -34,23 +34,7 @@ bio.display = function() {
   var formattedWelcomeMessage = HTMLwelcomeMsg.replace('%data%',
                                                        bio.welcomeMessage);
 
-  var formattedContacts = [];
-  if (bio.contacts.mobile) {
-    formattedContacts.push(HTMLmobile.replace('%data%', bio.contacts.mobile));
-  }
-  if (bio.contacts.email) {
-    formattedContacts.push(HTMLemail.replace('%data%', bio.contacts.email));
-  }
-  if (bio.contacts.github) {
-    formattedContacts.push(HTMLgithub.replace('%data%', bio.contacts.github));
-  }
-  if (bio.contacts.twitter) {
-    formattedContacts.push(HTMLtwitter.replace('%data%', bio.contacts.twitter));
-  }
-  if (bio.contacts.location) {
-    formattedContacts.push(HTMLlocation.replace('%data%',
-                                                 bio.contacts.location));
-  }
+  var formattedContacts = buildContactList();
 
   var formattedSkills = [];
 
@@ -61,7 +45,7 @@ bio.display = function() {
     formattedSkills.push(HTMLskills.replace('%data%', bio.skills[i]));
   }
 
-  var $header = $('#header');
+  var $header = $('#header .content');
   $header.prepend(formattedRole)
          .prepend(formattedName);
 
@@ -69,8 +53,7 @@ bio.display = function() {
 
   $header.append(formattedBioPic)
          .append(formattedWelcomeMessage)
-
-  $header.append(HTMLskillsStart)
+         .append(HTMLskillsStart)
          .find('#skills')
          .append(formattedSkills.join(''));
 };
@@ -78,7 +61,7 @@ bio.display = function() {
 var education = {
   "schools": [
     {
-      "name": "Wichia State University",
+      "name": "Wichita State University",
       "location": "Wichita, KS",
       "degree": "Bachelor of Fine Arts",
       "majors": ["Graphic Design"],
@@ -106,7 +89,7 @@ var education = {
 
 education.display = function() {
 
-  var $education = $('#education');
+  var $education = $('#education .content');
 
   if (education.schools && education.schools.length > 0) {
 
@@ -209,8 +192,7 @@ work.display = function() {
   // If there are no jobs, stop function execution.
   if (!work.jobs || work.jobs.length === 0) return;
 
-  var $workExperience = $('#workExperience');
-  $workExperience.append(HTMLworkStart);
+  var $workExperience = $('#workExperience .content');
 
   for (var i = 0, len = work.jobs.length; i < len; i++) {
     var obj = work.jobs[i];
@@ -220,11 +202,13 @@ work.display = function() {
     var formattedDates = HTMLworkDates.replace('%data%', obj.dates);
     var formattedDescription = HTMLworkDescription.replace('%data%', obj.description);
 
+    $workExperience.append(HTMLworkStart);
     var $workEntry = $('.work-entry:last');
-    $workEntry.append(formattedEmployer + formattedWorkTitle);
-    $workEntry.append(formattedWorkLocation);
-    $workEntry.append(formattedDates);
-    $workEntry.append(formattedDescription);
+    $workEntry.append(formattedEmployer + formattedWorkTitle)
+              .append(formattedWorkLocation)
+              .append(formattedDates)
+              .append(formattedDescription);
+
   }
 };
 
@@ -234,7 +218,8 @@ var projects = {
       "title": "Project 1",
       "dates": "2015",
       "description": "This is Project 1’s description.",
-      "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
+      "images": ["images/portfolio-thumbnail-placeholder@1x.png",
+                 "images/portfolio-thumbnail-placeholder@1x.png"]
     },
     {
       "title": "Project 2",
@@ -267,7 +252,7 @@ projects.display = function() {
   // If there are no projects, stop function execution.
   if (!projects.projects || projects.projects.length === 0) return;
 
-  var $projects = $('#projects');
+  var $projects = $('#projects-wrapper');
 
   for (var i = 0, len = projects.projects.length; i < len; i++) {
     var project = projects.projects[i];
@@ -280,15 +265,15 @@ projects.display = function() {
 
     var formattedImages = [];
     for (var j = 0, jlen = project.images.length; j < jlen; j++) {
-      formattedImages.push(HTMLprojectImage.replace('%data%', project.images));
+      formattedImages.push(HTMLprojectImage.replace('%data%', project.images[j]));
     }
-
+    console.log(formattedImages);
 
     var $project = $(HTMLprojectStart);
     $project.append(formattedTitle)
             .append(formattedDates)
             .append(formattedDescription)
-            .append(formattedImages.join(''));
+            .append(formattedImages);
 
     $projects.append($project);
   }
@@ -303,31 +288,36 @@ education.display();
 // Populate "Let's Connect" footer
 $footer = $('#footerContacts');
 
-var formattedContacts = [];
-if (bio.contacts.mobile) {
-  formattedContacts.push(HTMLmobile.replace('%data%', bio.contacts.mobile));
-}
-if (bio.contacts.email) {
-  formattedContacts.push(HTMLemail.replace('%data%', bio.contacts.email));
-}
-if (bio.contacts.github) {
-  formattedContacts.push(HTMLgithub.replace('%data%', bio.contacts.github));
-}
-if (bio.contacts.twitter) {
-  formattedContacts.push(HTMLtwitter.replace('%data%', bio.contacts.twitter));
-}
-if (bio.contacts.location) {
-  formattedContacts.push(HTMLlocation.replace('%data%',
-                                               bio.contacts.location));
-}
-
+var formattedContacts = buildContactList();
 $footer.append(formattedContacts);
 console.log($footer);
 
-// Add a map
-$('#mapDiv').append(googleMap);
+// // Add a map
+$('#mapDiv .content').append(googleMap);
 
 // Track click locations
 $(document).click(function(loc) {
   logClicks(loc.pageX, loc.pageY);
 });
+
+function buildContactList() {
+  var formattedContacts = [];
+  if (bio.contacts.mobile) {
+    formattedContacts.push(HTMLmobile.replace('%data%', bio.contacts.mobile));
+  }
+  if (bio.contacts.email) {
+    formattedContacts.push(HTMLemail.replace('%data%', bio.contacts.email));
+  }
+  if (bio.contacts.github) {
+    formattedContacts.push(HTMLgithub.replace('%data%', bio.contacts.github));
+  }
+  if (bio.contacts.twitter) {
+    formattedContacts.push(HTMLtwitter.replace('%data%', bio.contacts.twitter));
+  }
+  if (bio.contacts.location) {
+    formattedContacts.push(HTMLlocation.replace('%data%',
+                                                 bio.contacts.location));
+  }
+
+  return formattedContacts;
+}
