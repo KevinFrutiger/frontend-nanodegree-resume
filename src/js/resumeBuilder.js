@@ -51,11 +51,14 @@ bio.display = function() {
 
   $('#topContacts').append(formattedContacts.join(''))
 
-  $header.append(formattedBioPic)
+  var $biopic = $(formattedBioPic).on('load', function() { console.log($(this))});
+
+  $header.append($biopic)
          .append(formattedWelcomeMessage)
          .append(HTMLskillsStart)
          .find('#skills')
          .append(formattedSkills.join(''));
+
 };
 
 var education = {
