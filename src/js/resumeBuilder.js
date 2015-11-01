@@ -6,15 +6,11 @@
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
  */
 
-// Set up JSON objects for bio, work, projects, and education. Note these are
-// required to be valid JSON objects. Hence they use double-quotes and ignore
-// 80-column line wrap.
-
 var bio = {
   "name": "Kevin Frutiger",
   "role": "Front-end Web Developer",
   "contacts": {
-    "mobile": "650-866-5380",
+    "mobile": "xxx-xxx-xxxx",
     "email": "webmessage@frutigergroup.com",
     "github": "KevinFrutiger",
     "twitter": "@KevinFrutiger",
@@ -38,8 +34,8 @@ bio.display = function() {
 
   var formattedSkills = [];
 
-  /* Class note: I'm setting the variable len to avoid JS recalculating the
-     the length of the array on each loop. It's something I've aready been doing
+  /* Class note: I'm setting the variable "len" to avoid JS recalculating the
+     the length of the array on each loop. It's something I've aready been doing.
    */
   for (var i = 0, len = bio.skills.length; i < len; i++) {
     formattedSkills.push(HTMLskills.replace('%data%', bio.skills[i]));
@@ -51,9 +47,7 @@ bio.display = function() {
 
   $('#topContacts').append(formattedContacts.join(''))
 
-  var $biopic = $(formattedBioPic).on('load', function() { console.log($(this))});
-
-  $header.append($biopic)
+  $header.append(formattedBioPic)
          .append(formattedWelcomeMessage)
          .append(HTMLskillsStart)
          .find('#skills')
@@ -206,9 +200,13 @@ work.display = function() {
     var formattedDescription = HTMLworkDescription.replace('%data%', obj.description);
 
     $workExperience.append(HTMLworkStart);
+
+    $workLocation = $(formattedWorkLocation);
+    $workLocation.on('click', function() {console.log('clicking')});
+
     var $workEntry = $('.work-entry:last');
     $workEntry.append(formattedEmployer + formattedWorkTitle)
-              .append(formattedWorkLocation)
+              .append($workLocation)
               .append(formattedDates)
               .append(formattedDescription);
 
@@ -270,7 +268,6 @@ projects.display = function() {
     for (var j = 0, jlen = project.images.length; j < jlen; j++) {
       formattedImages.push(HTMLprojectImage.replace('%data%', project.images[j]));
     }
-    console.log(formattedImages);
 
     var $project = $(HTMLprojectStart);
     $project.append(formattedTitle)
@@ -293,7 +290,6 @@ $footer = $('#footerContacts');
 
 var formattedContacts = buildContactList();
 $footer.append(formattedContacts);
-console.log($footer);
 
 // // Add a map
 $('#mapDiv .content').append(googleMap);

@@ -94,7 +94,8 @@ section {
   color: #999;
   line-height: 1.14;
   float: right;
-
+  -webkit-user-select: none;
+  user-select: none
 }
 
 p {
