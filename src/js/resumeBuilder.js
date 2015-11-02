@@ -15,7 +15,13 @@
 /* Define an object for each section, to hold data for that section. */
 
 /**
- * An object that holds bio/header information.
+ * A JSON object that holds bio/header information.
+ * @property {string} name The name for person.
+ * @property {string} role The desired role.
+ * @property {object} contacts An object containing contact information.
+ * @property {string} welcomeMessage A welcome message/summary.
+ * @property {Array.<string>} skills An array of job skills.
+ * @property {string} biopic A URL to a bio picture.
  */
 var bio = {
   "name": "Kevin Frutiger",
@@ -71,7 +77,11 @@ bio.display = function() {
 };
 
 /**
- * An object that holds education information.
+ * A JSON object that holds education information.
+ * @property {Array.<object>} schools An array of objects containing information
+ *     about each school.
+ * @property {Array.<object>} onlineCourses An array of objects containing
+ *     information about each online course
  */
 var education = {
   "schools": [
@@ -158,14 +168,14 @@ education.display = function() {
 };
 
 
-/**
- * An object that holds work information.
- */
-var work = {
-
 // TODO: Replace job descriptions with bulleted lists. Requires display
 // function and helper functions to be updated to accept them.
-
+/**
+ * A JSON object that holds work information.
+ * @property {Array.<string>} jobs An array of objects containing information
+ *     about each job
+ */
+var work = {
   "jobs": [
     {
       "employer": "Google",
@@ -245,10 +255,12 @@ work.display = function() {
 };
 
 /**
- * An object that stores project information.
+ * A JSON object that stores project information.
+ * @property {Array.<object>} projects An array of objects containing
+ *    information about each project.
  */
 var projects = {
-  projects: [
+  "projects": [
     {
       "title": "Project 1",
       "dates": "2015",
@@ -339,7 +351,7 @@ $(document).click(function(loc) {
 
 /**
  * Returns an array of HTML strings formatted from properties in bio.contacts.
- * @returns {array} An array of HTML strings.
+ * @returns {Array.<string>} An array of HTML strings.
  */
 function buildContactList() {
   var formattedContacts = [];
