@@ -58,10 +58,12 @@ bio.display = function() {
     Class note: I'm setting the variable "len" to avoid JS recalculating the
     the length of the array on each loop. It's something I've aready been doing.
    */
+   // Push formatted strings to the array
   for (var i = 0, len = bio.skills.length; i < len; i++) {
     formattedSkills.push(HTMLskills.replace('%data%', bio.skills[i]));
   }
 
+  // Add objects to the page
   var $header = $('#header .content');
   $header.prepend(formattedRole)
          .prepend(formattedName);
@@ -125,6 +127,7 @@ education.display = function() {
       var $school = $(HTMLschoolStart);
       var obj = education.schools[i];
 
+      // Format data
       var formattedName = HTMLschoolName.replace('%data%', obj.name);
       formattedName = formattedName.replace('#', obj.url);
       var formattedDegree = HTMLschoolDegree.replace('%data%', obj.degree);
@@ -134,23 +137,27 @@ education.display = function() {
       var formattedMajor = HTMLschoolMajor.replace(
                                '%data%', obj.majors.join(''));
 
+      // Prepare object
       $school.append(formattedName + formattedDegree)
              .append(formattedDates)
              .append(formattedLocation)
              .append(formattedMajor);
 
+      // Add object to the page
       $education.append($school);
     }
   }
 
   if (education.onlineCourses && education.onlineCourses.length > 0) {
 
+    // Add the online classes header
     $education.append(HTMLonlineClasses)
 
     for (var i = 0, len = education.onlineCourses.length; i < len; i++) {
       var $course = $(HTMLschoolStart);
       var obj = education.onlineCourses[i];
 
+      // Format data
       var formattedTitle = HTMLonlineTitle.replace('%data%', obj.title);
       formattedTitle = formattedTitle.replace('#', obj.url);
       var formattedSchool = HTMLonlineSchool.replace('%data%', obj.school);
@@ -158,10 +165,12 @@ education.display = function() {
       var formattedUrl = HTMLonlineURL.replace('%data%', obj.url);
       formattedUrl = formattedUrl.replace('#', obj.url);
 
+      // Prepare object
       $course.append(formattedTitle + formattedSchool)
              .append(formattedDates)
              .append(formattedUrl);
 
+      // Add object to the page
       $education.append($course);
     }
   }
@@ -234,7 +243,7 @@ work.display = function() {
   for (var i = 0, len = work.jobs.length; i < len; i++) {
     var obj = work.jobs[i];
 
-    // Format the strings
+    // Format data
     var formattedEmployer = HTMLworkEmployer.replace('%data%', obj.employer)
     var formattedWorkTitle = HTMLworkTitle.replace('%data%', obj.title);
     var formattedWorkLocation =  HTMLworkLocation.replace('%data%', obj.location);
@@ -244,7 +253,8 @@ work.display = function() {
     // Append the start of the work entry.
     $workExperience.append(HTMLworkStart);
 
-    // Append data to the last work entry, which is the empty one we just added.
+    // Append objects to the last work entry, which is the empty one we just
+    // added.
     var $workEntry = $('.work-entry:last');
     $workEntry.append(formattedEmployer + formattedWorkTitle)
               .append(formattedWorkLocation)
@@ -307,23 +317,26 @@ projects.display = function() {
   for (var i = 0, len = projects.projects.length; i < len; i++) {
     var project = projects.projects[i];
 
-
+    // Format data
     var formattedTitle = HTMLprojectTitle.replace('%data%', project.title);
     var formattedDates = HTMLprojectDates.replace('%data%', project.dates);
     var formattedDescription = HTMLprojectDescription.replace(
                                    '%data%', project.description);
 
+    // Build array of HTML strings for the images
     var formattedImages = [];
     for (var j = 0, jlen = project.images.length; j < jlen; j++) {
       formattedImages.push(HTMLprojectImage.replace('%data%', project.images[j]));
     }
 
+    // Prepare the object
     var $project = $(HTMLprojectStart);
     $project.append(formattedTitle)
             .append(formattedDates)
             .append(formattedDescription)
             .append(formattedImages);
 
+    // Add the object to the page
     $projects.append($project);
   }
 };
@@ -336,17 +349,16 @@ education.display();
 
 // Populate "Let's Connect" footer.
 $footer = $('#footerContacts');
-
 var formattedContacts = buildContactList();
 $footer.append(formattedContacts);
 
-// // Add a map
+// Add a map.
 $('#mapDiv .content').append(googleMap);
 
-// Track click locations
+// Track click locations.
 $(document).click(function(loc) {
-  logClicks(loc.pageX, loc.pageY);
-});
+                      logClicks(loc.pageX, loc.pageY);
+                  });
 
 
 /**
