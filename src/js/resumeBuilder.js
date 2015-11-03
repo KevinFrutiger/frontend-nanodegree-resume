@@ -50,8 +50,6 @@ bio.display = function() {
   var formattedWelcomeMessage = HTMLwelcomeMsg.replace('%data%',
                                                        bio.welcomeMessage);
 
-  var formattedContacts = buildContactList();
-
   var formattedSkills = [];
 
   /*
@@ -68,6 +66,7 @@ bio.display = function() {
   $header.prepend(formattedRole)
          .prepend(formattedName);
 
+  var formattedContacts = this.formatContactList();
   $('#topContacts').append(formattedContacts.join(''))
 
   $header.append(formattedBioPic)
@@ -77,6 +76,35 @@ bio.display = function() {
          .append(formattedSkills.join(''));
 
 };
+
+/**
+ * Returns an array of HTML strings formatted from properties in
+ * {@linkcode #bio.contacts}.
+ * @returns {Array.<string>} An array of LI HTML tags.
+ */
+bio.formatContactList = function() {
+  var formattedContacts = [];
+
+  // If the entry isn't blank, format the data and push it to the array.
+  if (bio.contacts.mobile) {
+    formattedContacts.push(HTMLmobile.replace('%data%', bio.contacts.mobile));
+  }
+  if (bio.contacts.email) {
+    formattedContacts.push(HTMLemail.replace('%data%', bio.contacts.email));
+  }
+  if (bio.contacts.github) {
+    formattedContacts.push(HTMLgithub.replace('%data%', bio.contacts.github));
+  }
+  if (bio.contacts.twitter) {
+    formattedContacts.push(HTMLtwitter.replace('%data%', bio.contacts.twitter));
+  }
+  if (bio.contacts.location) {
+    formattedContacts.push(
+        HTMLlocation.replace('%data%', bio.contacts.location));
+  }
+
+  return formattedContacts;
+}
 
 /**
  * A JSON object that holds education information.
@@ -341,16 +369,31 @@ projects.display = function() {
   }
 };
 
+/**
+ * Object to handle footer display, using data from other objects.
+ */
+var footer = {};
+
+/**
+ * Adds the footer content.
+ * @param {Array.<string>} liElementStrings An array of LI element HTML.
+ */
+footer.display = function(liElementStrings) {
+  if (liElementStrings) {
+    $footer = $('#footerContacts');
+    $footer.append(liElementStrings);
+  } else {
+    console.warn('footer.display() expected array of LI strings. ' +
+                 'Received nothing.')
+  }
+}
+
 // Display all sections.
 bio.display();
 work.display();
 projects.display();
 education.display();
-
-// Populate "Let's Connect" footer.
-$footer = $('#footerContacts');
-var formattedContacts = buildContactList();
-$footer.append(formattedContacts);
+footer.display(bio.formatContactList());
 
 // Add a map.
 $('#mapDiv .content').append(googleMap);
@@ -359,32 +402,3 @@ $('#mapDiv .content').append(googleMap);
 $(document).click(function(loc) {
                       logClicks(loc.pageX, loc.pageY);
                   });
-
-
-/**
- * Returns an array of HTML strings formatted from properties in bio.contacts.
- * @returns {Array.<string>} An array of HTML strings.
- */
-function buildContactList() {
-  var formattedContacts = [];
-
-  // If the entry isn't blank, format the data and push it to the array.
-  if (bio.contacts.mobile) {
-    formattedContacts.push(HTMLmobile.replace('%data%', bio.contacts.mobile));
-  }
-  if (bio.contacts.email) {
-    formattedContacts.push(HTMLemail.replace('%data%', bio.contacts.email));
-  }
-  if (bio.contacts.github) {
-    formattedContacts.push(HTMLgithub.replace('%data%', bio.contacts.github));
-  }
-  if (bio.contacts.twitter) {
-    formattedContacts.push(HTMLtwitter.replace('%data%', bio.contacts.twitter));
-  }
-  if (bio.contacts.location) {
-    formattedContacts.push(
-        HTMLlocation.replace('%data%', bio.contacts.location));
-  }
-
-  return formattedContacts;
-}
