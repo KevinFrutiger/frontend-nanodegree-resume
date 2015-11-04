@@ -114,32 +114,27 @@ bio.formatContactList = function() {
  *     information about each online course
  */
 var education = {
-  "schools": [
-    {
+  "schools": [{
       "name": "Wichita State University",
       "location": "Wichita, KS",
       "degree": "Bachelor of Fine Arts",
       "majors": ["Graphic Design"],
       "dates": 2005,
       "url": "http://www.wichita.edu/"
-    },
-    {
+    },{
       "name": "Art Institute of Colorado",
       "location": "Denver, CO",
       "degree": "Associate of Applied Science",
       "majors": ["Computer Animation"],
       "dates": 1999,
       "url": "https://www.artinstitutes.edu/denver/"
-    }
-  ],
-  "onlineCourses": [
-    {
+    }],
+  "onlineCourses": [{
       "title": "Front-End Web Developer Nanodegree",
       "school": "Udacity",
       "dates": 2016,
       "url": "https://www.udacity.com/"
-    }
-  ]
+    }]
 };
 
 /**
@@ -213,50 +208,43 @@ education.display = function() {
  *     about each job
  */
 var work = {
-  "jobs": [
-    {
+  "jobs": [{
       "employer": "Google",
       "title": "Technical Vendor Program Manager",
       "location": "San Francisco, CA",
       "dates": "Oct 2013 – February 2015",
       "description": "Managed technical vendor programs to support global, top-tier DoubleClick Rich Media and AdWords Display Ad Builder customers."
-    },
-    {
+    },{
       "employer": "Google",
       "title": "Creative Technical Specialist",
       "location": "San Francisco, CA",
       "dates": "Oct 2011 – February 2013",
       "description": "Provided DoubleClick Studio technical consultation and troubleshooting for creative and media agencies. Created build guides and video training for core and advanced features of Studio to scale support, including Fundamentals, Dynamic Creative, and VPAID."
-    },
-    {
+    },{
       "employer": "Google",
       "title": "Rich Media Production Specialist",
       "location": "San Francisco, CA",
       "dates": "March 2008 – Oct 2013",
       "description": "Updated clients’ ActionScript for deployment in DoubleClick Studio."
-    },
-    {
+    },{
       "employer": "Dish Network",
       "title": "Instructional Media Developer",
       "location": "San Francisco, CA",
       "dates": "Oct 2007 – March 2008",
       "description": "Created e-learning simulations, interactions, and animations with ActionScript, Flash, Photoshop, and Blender."
-    },
-    {
+    },{
       "employer": "CleverMedia",
       "title": "Flash Game Programmer (contract)",
       "location": "Denver, CO",
       "dates": "March 2007 – Oct 2007",
       "description": "Utilized ActionScript to realize clients’ game concepts."
-    },
-    {
+    },{
       "employer": "Active Education",
       "title": "Instructional Media Developer",
       "location": "Denver, CO",
       "dates": "Oct 2004 – March 2007",
       "description": "Utilized ActionScript to realize clients’ game concepts."
-    }
-  ]
+    }]
 };
 
 /**
@@ -298,39 +286,33 @@ work.display = function() {
  *    information about each project.
  */
 var projects = {
-  "projects": [
-    {
+  "projects": [{
       "title": "Project 1",
       "dates": "2015",
       "description": "This is Project 1’s description.",
       "images": ["images/portfolio-thumbnail-placeholder@1x.png",
                  "images/portfolio-thumbnail-placeholder@1x.png"]
-    },
-    {
+    },{
       "title": "Project 2",
       "dates": "2015",
       "description": "This is Project 2’s description.",
       "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
-    },
-    {
+    },{
       "title": "Project 3",
       "dates": "2015",
       "description": "This is Project 3’s description.",
       "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
-    },
-    {
+    },{
       "title": "Project 4",
       "dates": "2015",
       "description": "This is Project 4’s description.",
       "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
-    },
-    {
+    },{
       "title": "Project 5",
       "dates": "2015",
       "description": "This is Project 5’s description.",
       "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
-    }
-  ]
+    }]
 };
 
 /**
