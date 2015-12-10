@@ -41,72 +41,6 @@ var bio = {
 };
 
 /**
- * Adds bio object data to the page.
- */
-bio.display = function() {
-  var formattedName = HTMLheaderName.replace('%data%', bio.name);
-  var formattedRole = HTMLheaderRole.replace('%data%', bio.role);
-  var formattedBioPic = HTMLbioPic.replace('%data%', bio.biopic);
-  var formattedWelcomeMessage = HTMLwelcomeMsg.replace('%data%',
-                                                       bio.welcomeMessage);
-
-  var formattedSkills = [];
-
-  /*
-    Class note: I'm setting the variable "len" to avoid JS recalculating the
-    the length of the array on each loop. It's something I've aready been doing.
-   */
-   // Push formatted strings to the array
-  for (var i = 0, len = bio.skills.length; i < len; i++) {
-    formattedSkills.push(HTMLskills.replace('%data%', bio.skills[i]));
-  }
-
-  // Add objects to the page
-  var $header = $('#header .content');
-  $header.prepend(formattedRole)
-         .prepend(formattedName);
-
-  var formattedContacts = this.formatContactList();
-  $('#topContacts').append(formattedContacts.join(''))
-
-  $header.append(formattedBioPic)
-         .append(formattedWelcomeMessage)
-         .append(HTMLskillsStart)
-         .find('#skills')
-         .append(formattedSkills.join(''));
-
-};
-
-/**
- * Returns an array of HTML strings formatted from properties in
- * {@linkcode #bio.contacts}.
- * @returns {Array.<string>} An array of LI HTML tags.
- */
-bio.formatContactList = function() {
-  var formattedContacts = [];
-
-  // If the entry isn't blank, format the data and push it to the array.
-  if (bio.contacts.mobile) {
-    formattedContacts.push(HTMLmobile.replace('%data%', bio.contacts.mobile));
-  }
-  if (bio.contacts.email) {
-    formattedContacts.push(HTMLemail.replace('%data%', bio.contacts.email));
-  }
-  if (bio.contacts.github) {
-    formattedContacts.push(HTMLgithub.replace('%data%', bio.contacts.github));
-  }
-  if (bio.contacts.twitter) {
-    formattedContacts.push(HTMLtwitter.replace('%data%', bio.contacts.twitter));
-  }
-  if (bio.contacts.location) {
-    formattedContacts.push(
-        HTMLlocation.replace('%data%', bio.contacts.location));
-  }
-
-  return formattedContacts;
-}
-
-/**
  * A JSON object that holds education information.
  * @property {Array.<object>} schools An array of objects containing information
  *     about each school.
@@ -136,69 +70,6 @@ var education = {
       "url": "https://www.udacity.com/"
     }]
 };
-
-/**
- * Adds education object data to the page.
- */
-education.display = function() {
-
-  var $education = $('#education .content');
-
-  if (education.schools && education.schools.length > 0) {
-
-    for (var i = 0, len = education.schools.length; i < len; i++) {
-      var $school = $(HTMLschoolStart);
-      var obj = education.schools[i];
-
-      // Format data
-      var formattedName = HTMLschoolName.replace('%data%', obj.name);
-      formattedName = formattedName.replace('#', obj.url);
-      var formattedDegree = HTMLschoolDegree.replace('%data%', obj.degree);
-      var formattedDates = HTMLschoolDates.replace('%data%', obj.dates);
-      var formattedLocation = HTMLschoolLocation.replace(
-                                  '%data%', obj.location);
-      var formattedMajor = HTMLschoolMajor.replace(
-                               '%data%', obj.majors.join(''));
-
-      // Prepare object
-      $school.append(formattedName + formattedDegree)
-             .append(formattedDates)
-             .append(formattedLocation)
-             .append(formattedMajor);
-
-      // Add object to the page
-      $education.append($school);
-    }
-  }
-
-  if (education.onlineCourses && education.onlineCourses.length > 0) {
-
-    // Add the online classes header
-    $education.append(HTMLonlineClasses)
-
-    for (var i = 0, len = education.onlineCourses.length; i < len; i++) {
-      var $course = $(HTMLschoolStart);
-      var obj = education.onlineCourses[i];
-
-      // Format data
-      var formattedTitle = HTMLonlineTitle.replace('%data%', obj.title);
-      formattedTitle = formattedTitle.replace('#', obj.url);
-      var formattedSchool = HTMLonlineSchool.replace('%data%', obj.school);
-      var formattedDates = HTMLonlineDates.replace('%data%', obj.dates);
-      var formattedUrl = HTMLonlineURL.replace('%data%', obj.url);
-      formattedUrl = formattedUrl.replace('#', obj.url);
-
-      // Prepare object
-      $course.append(formattedTitle + formattedSchool)
-             .append(formattedDates)
-             .append(formattedUrl);
-
-      // Add object to the page
-      $education.append($course);
-    }
-  }
-};
-
 
 // TODO: Replace job descriptions with bulleted lists. Requires display
 // function and helper functions to be updated to accept them.
@@ -248,39 +119,6 @@ var work = {
 };
 
 /**
- * Adds information from the work object to the page.
- */
-work.display = function() {
-  // If there are no jobs, stop function execution.
-  if (!work.jobs || work.jobs.length === 0) return;
-
-  var $workExperience = $('#workExperience .content');
-
-  for (var i = 0, len = work.jobs.length; i < len; i++) {
-    var obj = work.jobs[i];
-
-    // Format data
-    var formattedEmployer = HTMLworkEmployer.replace('%data%', obj.employer)
-    var formattedWorkTitle = HTMLworkTitle.replace('%data%', obj.title);
-    var formattedWorkLocation =  HTMLworkLocation.replace('%data%', obj.location);
-    var formattedDates = HTMLworkDates.replace('%data%', obj.dates);
-    var formattedDescription = HTMLworkDescription.replace('%data%', obj.description);
-
-    // Append the start of the work entry.
-    $workExperience.append(HTMLworkStart);
-
-    // Append objects to the last work entry, which is the empty one we just
-    // added.
-    var $workEntry = $('.work-entry:last');
-    $workEntry.append(formattedEmployer + formattedWorkTitle)
-              .append(formattedWorkLocation)
-              .append(formattedDates)
-              .append(formattedDescription);
-
-  }
-};
-
-/**
  * A JSON object that stores project information.
  * @property {Array.<object>} projects An array of objects containing
  *    information about each project.
@@ -316,71 +154,334 @@ var projects = {
 };
 
 /**
- * Adds information from the project object to the page.
+ * Adds information to the bio section.
+ * @namespace
  */
-projects.display = function() {
-  // If there are no projects, stop function execution.
-  if (!projects.projects || projects.projects.length === 0) return;
+var bioView = {
+  /**
+   * Renders the bio to the page.
+   * @memberof bioView
+   * @method render
+   */
+  render: function() {
+    var bio = controller.getBio();
+    var formattedName = HTMLheaderName.replace('%data%', bio.name);
+    var formattedRole = HTMLheaderRole.replace('%data%', bio.role);
+    var formattedBioPic = HTMLbioPic.replace('%data%', bio.biopic);
+    var formattedWelcomeMessage = HTMLwelcomeMsg.replace('%data%',
+                                                         bio.welcomeMessage);
 
-  var $projects = $('#projects-wrapper');
+    var formattedSkills = [];
 
-  for (var i = 0, len = projects.projects.length; i < len; i++) {
-    var project = projects.projects[i];
-
-    // Format data
-    var formattedTitle = HTMLprojectTitle.replace('%data%', project.title);
-    var formattedDates = HTMLprojectDates.replace('%data%', project.dates);
-    var formattedDescription = HTMLprojectDescription.replace(
-                                   '%data%', project.description);
-
-    // Build array of HTML strings for the images
-    var formattedImages = [];
-    for (var j = 0, jlen = project.images.length; j < jlen; j++) {
-      formattedImages.push(HTMLprojectImage.replace('%data%', project.images[j]));
+    // Push formatted strings to the array
+    for (var i = 0, len = bio.skills.length; i < len; i++) {
+      formattedSkills.push(HTMLskills.replace('%data%', bio.skills[i]));
     }
 
-    // Prepare the object
-    var $project = $(HTMLprojectStart);
-    $project.append(formattedTitle)
-            .append(formattedDates)
-            .append(formattedDescription)
-            .append(formattedImages);
+    // Add objects to the page
+    var $header = $('#header .content');
+    $header.prepend(formattedRole)
+           .prepend(formattedName);
 
-    // Add the object to the page
-    $projects.append($project);
+    var formattedContacts = this.formatContactList();
+    $('#topContacts').append(formattedContacts.join(''))
+
+    $header.append(formattedBioPic)
+           .append(formattedWelcomeMessage)
+           .append(HTMLskillsStart)
+           .find('#skills')
+           .append(formattedSkills.join(''));
+  },
+
+  /**
+   * Returns array of &lt;li&gt; tags containing contact information.
+   * @memberof bioView
+   * @method formatContactList
+   * @returns {Array.<strings>}
+   */
+  formatContactList: function() {
+    var bio = controller.getBio();
+    var formattedContacts = [];
+
+    // If the entry isn't blank, format the data and push it to the array.
+    if (bio.contacts.mobile) {
+      formattedContacts.push(HTMLmobile.replace('%data%', bio.contacts.mobile));
+    }
+    if (bio.contacts.email) {
+      formattedContacts.push(HTMLemail.replace('%data%', bio.contacts.email));
+    }
+    if (bio.contacts.github) {
+      formattedContacts.push(HTMLgithub.replace('%data%', bio.contacts.github));
+    }
+    if (bio.contacts.twitter) {
+      formattedContacts.push(HTMLtwitter.replace('%data%', bio.contacts.twitter));
+    }
+    if (bio.contacts.location) {
+      formattedContacts.push(
+          HTMLlocation.replace('%data%', bio.contacts.location));
+    }
+
+    return formattedContacts;
   }
 };
 
 /**
- * Object to handle footer display, using data from other objects.
+ * Adds information to the education section.
+ * @namespace
  */
-var footer = {};
+var educationView = {
+  /**
+   * Renders the education items to the page.
+   * @memberof educationView
+   * @method render
+   */
+  render: function() {
+
+    var education = controller.getEducation();
+    var $education = $('#education .content');
+
+    if (education.schools && education.schools.length > 0) {
+
+      for (var i = 0, len = education.schools.length; i < len; i++) {
+        var $school = $(HTMLschoolStart);
+        var obj = education.schools[i];
+
+        // Format data
+        var formattedName = HTMLschoolName.replace('%data%', obj.name);
+        formattedName = formattedName.replace('#', obj.url);
+        var formattedDegree = HTMLschoolDegree.replace('%data%', obj.degree);
+        var formattedDates = HTMLschoolDates.replace('%data%', obj.dates);
+        var formattedLocation = HTMLschoolLocation.replace(
+                                    '%data%', obj.location);
+        var formattedMajor = HTMLschoolMajor.replace(
+                                 '%data%', obj.majors.join(''));
+
+        // Prepare object
+        $school.append(formattedName + formattedDegree)
+               .append(formattedDates)
+               .append(formattedLocation)
+               .append(formattedMajor);
+
+        // Add object to the page
+        $education.append($school);
+      }
+    }
+
+    if (education.onlineCourses && education.onlineCourses.length > 0) {
+
+      // Add the online classes header
+      $education.append(HTMLonlineClasses)
+
+      for (var i = 0, len = education.onlineCourses.length; i < len; i++) {
+        var $course = $(HTMLschoolStart);
+        var obj = education.onlineCourses[i];
+
+        // Format data
+        var formattedTitle = HTMLonlineTitle.replace('%data%', obj.title);
+        formattedTitle = formattedTitle.replace('#', obj.url);
+        var formattedSchool = HTMLonlineSchool.replace('%data%', obj.school);
+        var formattedDates = HTMLonlineDates.replace('%data%', obj.dates);
+        var formattedUrl = HTMLonlineURL.replace('%data%', obj.url);
+        formattedUrl = formattedUrl.replace('#', obj.url);
+
+        // Prepare object
+        $course.append(formattedTitle + formattedSchool)
+               .append(formattedDates)
+               .append(formattedUrl);
+
+        // Add object to the page
+        $education.append($course);
+      }
+    }
+  }
+
+}
 
 /**
- * Adds the footer content.
- * @param {Array.<string>} liElementStrings An array of LI element HTML.
+ * Adds information to the work section.
+ * @namespace
  */
-footer.display = function(liElementStrings) {
-  if (liElementStrings) {
-    $footer = $('#footerContacts');
-    $footer.append(liElementStrings);
-  } else {
-    console.warn('footer.display() expected array of LI strings. ' +
-                 'Received nothing.')
+var workView = {
+  /**
+   * Renders the work items to the page.
+   * @memberof workView
+   * @method render
+   */
+  render: function() {
+    var jobs = controller.getWork().jobs;
+
+    // If there are no jobs, stop function execution.
+    if (!jobs || jobs.length === 0) return;
+
+    var $workExperience = $('#workExperience .content');
+
+    for (var i = 0, len = jobs.length; i < len; i++) {
+      var job = jobs[i];
+
+      // Format data
+      var formattedEmployer = HTMLworkEmployer.replace('%data%', job.employer)
+      var formattedWorkTitle = HTMLworkTitle.replace('%data%', job.title);
+      var formattedWorkLocation =  HTMLworkLocation.replace('%data%', job.location);
+      var formattedDates = HTMLworkDates.replace('%data%', job.dates);
+      var formattedDescription = HTMLworkDescription.replace('%data%', job.description);
+
+      // Append the start of the work entry.
+      $workExperience.append(HTMLworkStart);
+
+      // Append objects to the last work entry, which is the empty one we just
+      // added.
+      var $workEntry = $('.work-entry:last');
+      $workEntry.append(formattedEmployer + formattedWorkTitle)
+                .append(formattedWorkLocation)
+                .append(formattedDates)
+                .append(formattedDescription);
+
+    }
   }
 }
 
-// Display all sections.
-bio.display();
-work.display();
-projects.display();
-education.display();
-footer.display(bio.formatContactList());
+/**
+ * Adds information to the project section.
+ * @namespace
+ */
+var projectsView = {
+  /**
+   * Renders the projects to the page.
+   * @memberof projectsView
+   * @method render
+   */
+  render: function() {
+    var projects = controller.getProjects().projects;
 
-// Add a map.
-$('#mapDiv .content').append(googleMap);
+    // If there are no projects, stop function execution.
+    if (!projects || projects.length === 0) return;
 
-// Track click locations.
-$(document).click(function(loc) {
-                      logClicks(loc.pageX, loc.pageY);
-                  });
+    var $projects = $('#projects-wrapper');
+
+    for (var i = 0, len = projects.length; i < len; i++) {
+      var project = projects[i];
+
+      // Format data
+      var formattedTitle = HTMLprojectTitle.replace('%data%', project.title);
+      var formattedDates = HTMLprojectDates.replace('%data%', project.dates);
+      var formattedDescription = HTMLprojectDescription.replace(
+                                     '%data%', project.description);
+
+      // Build array of HTML strings for the images
+      var formattedImages = [];
+      for (var j = 0, jlen = project.images.length; j < jlen; j++) {
+        formattedImages.push(HTMLprojectImage.replace('%data%', project.images[j]));
+      }
+
+      // Prepare the object
+      var $project = $(HTMLprojectStart);
+      $project.append(formattedTitle)
+              .append(formattedDates)
+              .append(formattedDescription)
+              .append(formattedImages);
+
+      // Add the object to the page
+      $projects.append($project);
+    }
+  }
+
+}
+
+/**
+ * Adds information to the footer section.
+ * @namespace
+ */
+var footerView = {
+  /**
+   * Renders the footer items to the page.
+   * @memberof footerView
+   * @method render
+   */
+  render: function(liElementStrings) {
+    if (liElementStrings) {
+      $footer = $('#footerContacts');
+      $footer.append(liElementStrings);
+    } else {
+      console.warn('footer.display() expected array of LI strings. ' +
+                   'Received nothing.')
+    }
+  }
+
+};
+
+/**
+ * Adds the map to the page.
+ * @namespace
+ */
+var mapView = {
+  /**
+   * Renders the map to the page.
+   * @memberof mapView
+   * @method render
+   */
+  render: function() {
+    // Add a map.
+    $('#mapDiv .content').append(googleMap);
+  }
+}
+
+/**
+ * Main control between data and views.
+ * @namespace
+ */
+var controller = {
+  /**
+   * Initializes the page.
+   * @memberof controller
+   * @method init
+   */
+  init: function() {
+    // Track click locations.
+    $(document).click(function(loc) {
+                          logClicks(loc.pageX, loc.pageY);
+                      });
+
+    // Render all the sections.
+    bioView.render();
+    workView.render();
+    projectsView.render();
+    educationView.render();
+    mapView.render();
+    footerView.render(bioView.formatContactList());
+  },
+
+  /**
+   * Returns bio data.
+   * @returns {object}
+   */
+  getBio: function() {
+    return bio;
+  },
+
+  /**
+   * Returns education data.
+   * @returns {object}
+   */
+  getEducation: function() {
+    return education;
+  },
+
+  /**
+   * Returns project data.
+   * @returns {object}
+   */
+  getProjects: function() {
+    return projects;
+  },
+
+  /**
+   * Returns work data.
+   * @returns {object}
+   */
+  getWork: function() {
+    return work;
+  }
+}
+
+// Initialize the page.
+controller.init();
