@@ -67,7 +67,7 @@ module.exports = function(grunt) {
 
     /* Testing */
     jshint: {
-      main: ['src/resumeBuilder.js']
+      main: ['src/js/resumeBuilder.js']
     }
   });
 
