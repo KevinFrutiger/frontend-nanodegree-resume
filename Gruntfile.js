@@ -63,6 +63,11 @@ module.exports = function(grunt) {
           dest: 'src/images/'
         }]
       }
+    },
+
+    /* Testing */
+    jshint: {
+      main: ['src/resumeBuilder.js']
     }
   });
 
@@ -70,6 +75,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-responsive-images');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.registerTask('generate-images', ['clean:generateImages', 'mkdir:generateImages', 'responsive_images', 'copy:generateImages']);
 
