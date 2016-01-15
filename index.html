@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Resume</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="js/jQuery.js"></script>
+  <!-- helper.js contains formatting strings and other utilities. -->
+  <script src="js/helper.js"></script>
+  <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+</head>
+<body>
+  <div id="main">
+    <section id="header" class="center-content color2">
+      <div class="content">
+        <ul id="topContacts" class="flex-box"></ul>
+      </div>
+    </section>
+    <div style="clear: both;"></div>
+    <section id="workExperience" class="color4">
+      <div class="content">
+        <h2>Work Experience</h2>
+      </div>
+    </section>
+    <section id="projects">
+      <div class="content">
+        <h2>Projects</h2>
+        <div id="projects-wrapper" class="grid"></div>
+      </div>
+    </section>
+    <section id="education" class="color4">
+      <div class="content">
+        <h2>Education</h2>
+      </div>
+    </section>
+    <section id="mapDiv">
+      <div class="content">
+        <h2>Where I’ve Lived and Worked</h2>
+      </div>
+    </section>
+    <section id="lets-connect" class="color2">
+      <div class="content">
+        <h2 class="color3 center-text">Let’s Connect</h2>
+        <ul id="footerContacts" class="flex-box"></ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- resumeBuilder.js contains resume content -->
+  <script src="js/resumeBuilder.js"></script>
+
+  <script type="text/javascript">
+    //  Hide empty items
+    if(document.getElementsByClassName('flex-item').length === 0) {
+      document.getElementById('topContacts').style.display = 'none';
+    }
+    if(document.getElementsByTagName('h1').length === 0) {
+      document.getElementById('header').style.display = 'none';
+    }
+    if(document.getElementsByClassName('work-entry').length === 0) {
+      document.getElementById('workExperience').style.display = 'none';
+    }
+    if(document.getElementsByClassName('project-entry').length === 0) {
+      document.getElementById('projects').style.display = 'none';
+    }
+    if(document.getElementsByClassName('education-entry').length === 0) {
+      document.getElementById('education').style.display = 'none';
+    }
+    if(document.getElementsByClassName('flex-item').length === 0) {
+      document.getElementById('lets-connect').style.display = 'none';
+    }
+    if(document.getElementById('map') === null) {
+      document.getElementById('mapDiv').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
