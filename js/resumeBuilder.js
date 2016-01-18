@@ -41,6 +41,72 @@ var bio = {
 };
 
 /**
+ * Adds bio object data to the page.
+ */
+bio.display = function() {
+  var formattedName = HTMLheaderName.replace('%data%', bio.name);
+  var formattedRole = HTMLheaderRole.replace('%data%', bio.role);
+  var formattedBioPic = HTMLbioPic.replace('%data%', bio.biopic);
+  var formattedWelcomeMessage = HTMLwelcomeMsg.replace('%data%',
+                                                       bio.welcomeMessage);
+
+  var formattedSkills = [];
+
+  /*
+    Class note: I'm setting the variable "len" to avoid JS recalculating the
+    the length of the array on each loop. It's something I've aready been doing.
+   */
+   // Push formatted strings to the array
+  for (var i = 0, len = bio.skills.length; i < len; i++) {
+    formattedSkills.push(HTMLskills.replace('%data%', bio.skills[i]));
+  }
+
+  // Add objects to the page
+  var $header = $('#header .content');
+  $header.prepend(formattedRole)
+         .prepend(formattedName);
+
+  var formattedContacts = this.formatContactList();
+  $('#topContacts').append(formattedContacts.join(''))
+
+  $header.append(formattedBioPic)
+         .append(formattedWelcomeMessage)
+         .append(HTMLskillsStart)
+         .find('#skills')
+         .append(formattedSkills.join(''));
+
+};
+
+/**
+ * Returns an array of HTML strings formatted from properties in
+ * {@linkcode #bio.contacts}.
+ * @returns {Array.<string>} An array of LI HTML tags.
+ */
+bio.formatContactList = function() {
+  var formattedContacts = [];
+
+  // If the entry isn't blank, format the data and push it to the array.
+  if (bio.contacts.mobile) {
+    formattedContacts.push(HTMLmobile.replace('%data%', bio.contacts.mobile));
+  }
+  if (bio.contacts.email) {
+    formattedContacts.push(HTMLemail.replace('%data%', bio.contacts.email));
+  }
+  if (bio.contacts.github) {
+    formattedContacts.push(HTMLgithub.replace('%data%', bio.contacts.github));
+  }
+  if (bio.contacts.twitter) {
+    formattedContacts.push(HTMLtwitter.replace('%data%', bio.contacts.twitter));
+  }
+  if (bio.contacts.location) {
+    formattedContacts.push(
+        HTMLlocation.replace('%data%', bio.contacts.location));
+  }
+
+  return formattedContacts;
+}
+
+/**
  * A JSON object that holds education information.
  * @property {Array.<object>} schools An array of objects containing information
  *     about each school.
@@ -70,6 +136,69 @@ var education = {
       "url": "https://www.udacity.com/"
     }]
 };
+
+/**
+ * Adds education object data to the page.
+ */
+education.display = function() {
+
+  var $education = $('#education .content');
+
+  if (education.schools && education.schools.length > 0) {
+
+    for (var i = 0, len = education.schools.length; i < len; i++) {
+      var $school = $(HTMLschoolStart);
+      var obj = education.schools[i];
+
+      // Format data
+      var formattedName = HTMLschoolName.replace('%data%', obj.name);
+      formattedName = formattedName.replace('#', obj.url);
+      var formattedDegree = HTMLschoolDegree.replace('%data%', obj.degree);
+      var formattedDates = HTMLschoolDates.replace('%data%', obj.dates);
+      var formattedLocation = HTMLschoolLocation.replace(
+                                  '%data%', obj.location);
+      var formattedMajor = HTMLschoolMajor.replace(
+                               '%data%', obj.majors.join(''));
+
+      // Prepare object
+      $school.append(formattedName + formattedDegree)
+             .append(formattedDates)
+             .append(formattedLocation)
+             .append(formattedMajor);
+
+      // Add object to the page
+      $education.append($school);
+    }
+  }
+
+  if (education.onlineCourses && education.onlineCourses.length > 0) {
+
+    // Add the online classes header
+    $education.append(HTMLonlineClasses)
+
+    for (var i = 0, len = education.onlineCourses.length; i < len; i++) {
+      var $course = $(HTMLschoolStart);
+      var obj = education.onlineCourses[i];
+
+      // Format data
+      var formattedTitle = HTMLonlineTitle.replace('%data%', obj.title);
+      formattedTitle = formattedTitle.replace('#', obj.url);
+      var formattedSchool = HTMLonlineSchool.replace('%data%', obj.school);
+      var formattedDates = HTMLonlineDates.replace('%data%', obj.dates);
+      var formattedUrl = HTMLonlineURL.replace('%data%', obj.url);
+      formattedUrl = formattedUrl.replace('#', obj.url);
+
+      // Prepare object
+      $course.append(formattedTitle + formattedSchool)
+             .append(formattedDates)
+             .append(formattedUrl);
+
+      // Add object to the page
+      $education.append($course);
+    }
+  }
+};
+
 
 // TODO: Replace job descriptions with bulleted lists. Requires display
 // function and helper functions to be updated to accept them.
@@ -119,6 +248,39 @@ var work = {
 };
 
 /**
+ * Adds information from the work object to the page.
+ */
+work.display = function() {
+  // If there are no jobs, stop function execution.
+  if (!work.jobs || work.jobs.length === 0) return;
+
+  var $workExperience = $('#workExperience .content');
+
+  for (var i = 0, len = work.jobs.length; i < len; i++) {
+    var obj = work.jobs[i];
+
+    // Format data
+    var formattedEmployer = HTMLworkEmployer.replace('%data%', obj.employer)
+    var formattedWorkTitle = HTMLworkTitle.replace('%data%', obj.title);
+    var formattedWorkLocation =  HTMLworkLocation.replace('%data%', obj.location);
+    var formattedDates = HTMLworkDates.replace('%data%', obj.dates);
+    var formattedDescription = HTMLworkDescription.replace('%data%', obj.description);
+
+    // Append the start of the work entry.
+    $workExperience.append(HTMLworkStart);
+
+    // Append objects to the last work entry, which is the empty one we just
+    // added.
+    var $workEntry = $('.work-entry:last');
+    $workEntry.append(formattedEmployer + formattedWorkTitle)
+              .append(formattedWorkLocation)
+              .append(formattedDates)
+              .append(formattedDescription);
+
+  }
+};
+
+/**
  * A JSON object that stores project information.
  * @property {Array.<object>} projects An array of objects containing
  *    information about each project.
@@ -154,412 +316,71 @@ var projects = {
 };
 
 /**
- * Adds information to the bio section.
- * @namespace
+ * Adds information from the project object to the page.
  */
-var bioView = {
-  // HTML markup to format the data.
-  HTMLstrings: {
-    headerName: '<h1 id="name">%data%</h1>',
-    headerRole: '<span class="job-title">%data%</span><hr/>',
-    contactGeneric: '<li class="flex-item"><span class="contact-labels">'+
-                    '%contact%</span><span class="contact-item">%data%</span>' +
-                    '</li>',
-    mobile: '<li class="flex-item"><span class="contact-labels">mobile</span>'+
-             '<span class="contact-item">%data%</span></li>',
-    email: '<li class="flex-item"><span class="contact-labels">email</span>' +
-            '<span class="contact-item">%data%</span></li>',
-    twitter: '<li class="flex-item"><span class="contact-labels">twitter' +
-              '</span><span class="contact-item">%data%</span></li>',
-    github: '<li class="flex-item"><span class="contact-labels">github</span>'+
-             '<span class="contact-item">%data%</span></li>',
-    blog: '<li class="flex-item"><span class="contact-labels">blog</span>' +
-           '<span class="contact-item">%data%</span></li>',
-    location: '<li class="flex-item"><span class="contact-labels">location' +
-               '</span><span class="contact-item">%data%</span></li>',
-    bioPic: '<img src="%data%" class="biopic" width="211" height="211">',
-    welcomeMsg: '<p class="welcome-message">%data%</p>',
-    skillsStart: '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills">'+
-                  '</ul>',
-    skills: '<li><span class="skill-text">%data%</span></li>'
-  },
+projects.display = function() {
+  // If there are no projects, stop function execution.
+  if (!projects.projects || projects.projects.length === 0) return;
 
-  /**
-   * Renders the bio to the page.
-   * @memberof bioView
-   * @method render
-   */
-  render: function() {
-    var bio = controller.getBio();
+  var $projects = $('#projects-wrapper');
 
-    var formattedName = this.HTMLstrings.headerName.replace('%data%', bio.name);
-    var formattedRole = this.HTMLstrings.headerRole.replace('%data%', bio.role);
-    var formattedBioPic = this.HTMLstrings.bioPic.replace('%data%', bio.biopic);
-    var formattedWelcomeMessage = this.HTMLstrings.welcomeMsg.replace(
-                                      '%data%', bio.welcomeMessage);
+  for (var i = 0, len = projects.projects.length; i < len; i++) {
+    var project = projects.projects[i];
 
-    var formattedSkills = [];
+    // Format data
+    var formattedTitle = HTMLprojectTitle.replace('%data%', project.title);
+    var formattedDates = HTMLprojectDates.replace('%data%', project.dates);
+    var formattedDescription = HTMLprojectDescription.replace(
+                                   '%data%', project.description);
 
-    // Push formatted strings to the array
-    for (var i = 0, len = bio.skills.length; i < len; i++) {
-      formattedSkills.push(
-          this.HTMLstrings.skills.replace('%data%', bio.skills[i]));
+    // Build array of HTML strings for the images
+    var formattedImages = [];
+    for (var j = 0, jlen = project.images.length; j < jlen; j++) {
+      formattedImages.push(HTMLprojectImage.replace('%data%', project.images[j]));
     }
 
-    // Add objects to the page
-    var $header = $('#header .content');
-    $header.prepend(formattedRole)
-           .prepend(formattedName);
+    // Prepare the object
+    var $project = $(HTMLprojectStart);
+    $project.append(formattedTitle)
+            .append(formattedDates)
+            .append(formattedDescription)
+            .append(formattedImages);
 
-    var formattedContacts = this.formatContactList();
-    $('#topContacts').append(formattedContacts.join(''));
-
-    $header.append(formattedBioPic)
-           .append(formattedWelcomeMessage)
-           .append(this.HTMLstrings.skillsStart)
-           .find('#skills')
-           .append(formattedSkills.join(''));
-  },
-
-  /**
-   * Returns array of &lt;li&gt; tags containing contact information.
-   * @memberof bioView
-   * @method formatContactList
-   * @returns {Array.<strings>}
-   */
-  formatContactList: function() {
-    var bio = controller.getBio();
-    var formattedContacts = [];
-
-    // If the entry isn't blank, format the data and push it to the array.
-    if (bio.contacts.mobile) {
-      formattedContacts.push(this.HTMLstrings.mobile.replace('%data%', bio.contacts.mobile));
-    }
-    if (bio.contacts.email) {
-      formattedContacts.push(this.HTMLstrings.email.replace('%data%', bio.contacts.email));
-    }
-    if (bio.contacts.github) {
-      formattedContacts.push(this.HTMLstrings.github.replace('%data%', bio.contacts.github));
-    }
-    if (bio.contacts.twitter) {
-      formattedContacts.push(this.HTMLstrings.twitter.replace('%data%', bio.contacts.twitter));
-    }
-    if (bio.contacts.location) {
-      formattedContacts.push(
-          this.HTMLstrings.location.replace('%data%', bio.contacts.location));
-    }
-
-    return formattedContacts;
+    // Add the object to the page
+    $projects.append($project);
   }
 };
 
 /**
- * Adds information to the education section.
- * @namespace
+ * Object to handle footer display, using data from other objects.
  */
-var educationView = {
-  // HTML markup to format the data.
-  HTMLstrings: {
-    schoolStart: '<div class="education-entry"></div>',
-    schoolName: '<a href="#" target="_blank">%data%',
-    schoolDegree: ' -- %data%</a>',
-    schoolDates: '<div class="date-text">%data%</div>',
-    schoolLocation: '<div class="location-text">%data%</div>',
-    schoolMajor: '<em><br>Major: %data%</em>',
-    onlineClasses: '<h3>Online Classes</h3>',
-    onlineTitle: '<a href="#" target="_blank">%data%',
-    onlineSchool: ' - %data%</a>',
-    onlineDates: '<div class="date-text">%data%</div>',
-    onlineURL: '<br><a href="#" target="_blank">%data%</a>'
-  },
-
-
-  /**
-   * Renders the education items to the page.
-   * @memberof educationView
-   * @method render
-   */
-  render: function() {
-
-    var education = controller.getEducation();
-    var $education = $('#education .content');
-
-    if (education.schools && education.schools.length > 0) {
-
-      for (var i = 0, len = education.schools.length; i < len; i++) {
-        var $school = $(this.HTMLstrings.schoolStart);
-        var school = education.schools[i];
-
-        // Format data
-        var formattedName = this.HTMLstrings.schoolName.replace(
-                                '%data%', school.name);
-        formattedName = formattedName.replace('#', school.url);
-        var formattedDegree = this.HTMLstrings.schoolDegree.replace(
-                                  '%data%', school.degree);
-        var formattedSchoolDates = this.HTMLstrings.schoolDates.replace(
-                                       '%data%', school.dates);
-        var formattedLocation = this.HTMLstrings.schoolLocation.replace(
-                                    '%data%', school.location);
-        var formattedMajor = this.HTMLstrings.schoolMajor.replace(
-                                 '%data%', school.majors.join(''));
-
-        // Prepare object
-        $school.append(formattedName + formattedDegree)
-               .append(formattedSchoolDates)
-               .append(formattedLocation)
-               .append(formattedMajor);
-
-        // Add object to the page
-        $education.append($school);
-      }
-    }
-
-    if (education.onlineCourses && education.onlineCourses.length > 0) {
-
-      // Add the online classes header
-      $education.append(this.HTMLstrings.onlineClasses);
-
-      for (var i2 = 0, len2 = education.onlineCourses.length; i2 < len2; i2++) {
-        var $course = $(this.HTMLstrings.schoolStart);
-        var course = education.onlineCourses[i2];
-
-        // Format data
-        var formattedTitle = this.HTMLstrings.onlineTitle.replace(
-                                 '%data%', course.title);
-        formattedTitle = formattedTitle.replace('#', course.url);
-        var formattedSchool = this.HTMLstrings.onlineSchool.replace(
-                                  '%data%', course.school);
-        var formattedCourseDates = this.HTMLstrings.onlineDates.replace(
-                                       '%data%', course.dates);
-        var formattedUrl = this.HTMLstrings.onlineURL.replace(
-                               '%data%', course.url);
-        formattedUrl = formattedUrl.replace('#', course.url);
-
-        // Prepare object
-        $course.append(formattedTitle + formattedSchool)
-               .append(formattedCourseDates)
-               .append(formattedUrl);
-
-        // Add object to the page
-        $education.append($course);
-      }
-    }
-  }
-
-};
+var footer = {};
 
 /**
- * Adds information to the work section.
- * @namespace
+ * Adds the footer content.
+ * @param {Array.<string>} liElementStrings An array of LI element HTML.
  */
-var workView = {
-  // HTML markup to format the data.
-  HTMLstrings: {
-    workStart: '<div class="work-entry"></div>',
-    workEmployer: '<div class="employer-text">%data%',
-    workTitle: ' - %data%</div>',
-    workDates: '<div class="date-text">%data%</div>',
-    workLocation: '<div class="location-text">%data%</div>',
-    workDescription: '<p>%data%</p>'
-  },
-
-  /**
-   * Renders the work items to the page.
-   * @memberof workView
-   * @method render
-   */
-  render: function() {
-    var jobs = controller.getWork().jobs;
-
-    // If there are no jobs, stop function execution.
-    if (!jobs || jobs.length === 0) return;
-
-    var $workExperience = $('#workExperience .content');
-
-    for (var i = 0, len = jobs.length; i < len; i++) {
-      var job = jobs[i];
-
-      // Format data
-      var formattedEmployer = this.HTMLstrings.workEmployer.replace(
-                                  '%data%', job.employer);
-      var formattedWorkTitle = this.HTMLstrings.workTitle.replace(
-                                   '%data%', job.title);
-      var formattedWorkLocation =  this.HTMLstrings.workLocation.replace(
-                                       '%data%', job.location);
-      var formattedDates = this.HTMLstrings.workDates.replace(
-                               '%data%', job.dates);
-      var formattedDescription = this.HTMLstrings.workDescription.replace(
-                                     '%data%', job.description);
-
-      // Append the start of the work entry.
-      $workExperience.append(this.HTMLstrings.workStart);
-
-      // Append objects to the last work entry, which is the empty one we just
-      // added.
-      var $workEntry = $('.work-entry:last');
-      $workEntry.append(formattedEmployer + formattedWorkTitle)
-                .append(formattedWorkLocation)
-                .append(formattedDates)
-                .append(formattedDescription);
-
-    }
+footer.display = function(liElementStrings) {
+  if (liElementStrings) {
+    $footer = $('#footerContacts');
+    $footer.append(liElementStrings);
+  } else {
+    console.warn('footer.display() expected array of LI strings. ' +
+                 'Received nothing.')
   }
-};
+}
 
-/**
- * Adds information to the project section.
- * @namespace
- */
-var projectsView = {
-  // HTML markup to format the data.
-  HTMLstrings: {
-    projectStart: '<div class="project-entry col-4"></div>',
-    projectTitle: '<a href="#">%data%</a>',
-    projectDates: '<div class="date-text">%data%</div>',
-    projectDescription: '<p><br>%data%</p>',
-    projectImage: '<img src="%data%">'
-  },
+// Display all sections.
+bio.display();
+work.display();
+projects.display();
+education.display();
+footer.display(bio.formatContactList());
 
-  /**
-   * Renders the projects to the page.
-   * @memberof projectsView
-   * @method render
-   */
-  render: function() {
-    var projects = controller.getProjects().projects;
+// Add a map.
+$('#mapDiv .content').append(googleMap);
 
-    // If there are no projects, stop function execution.
-    if (!projects || projects.length === 0) return;
-
-    var $projects = $('#projects-wrapper');
-
-    for (var i = 0, len = projects.length; i < len; i++) {
-      var project = projects[i];
-
-      // Format data
-      var formattedTitle = this.HTMLstrings.projectTitle.replace(
-                               '%data%', project.title);
-      var formattedDates = this.HTMLstrings.projectDates.replace(
-                               '%data%', project.dates);
-      var formattedDescription = this.HTMLstrings.projectDescription.replace(
-                                     '%data%', project.description);
-
-      // Build array of HTML strings for the images
-      var formattedImages = [];
-      for (var j = 0, jlen = project.images.length; j < jlen; j++) {
-        formattedImages.push(
-            this.HTMLstrings.projectImage.replace('%data%', project.images[j]));
-      }
-
-      // Prepare the object
-      var $project = $(this.HTMLstrings.projectStart);
-      $project.append(formattedTitle)
-              .append(formattedDates)
-              .append(formattedDescription)
-              .append(formattedImages);
-
-      // Add the object to the page
-      $projects.append($project);
-    }
-  }
-
-};
-
-/**
- * Adds information to the footer section.
- * @namespace
- */
-var footerView = {
-  /**
-   * Renders the footer items to the page.
-   * @memberof footerView
-   * @method render
-   */
-  render: function(liElementStrings) {
-    if (liElementStrings) {
-      $footer = $('#footerContacts');
-      $footer.append(liElementStrings);
-    } else {
-      console.warn('footer.display() expected array of LI strings. ' +
-                   'Received nothing.');
-    }
-  }
-
-};
-
-/**
- * Adds the map to the page.
- * @namespace
- */
-var mapView = {
-  /**
-   * Renders the map to the page.
-   * @memberof mapView
-   * @method render
-   */
-  render: function() {
-    // Add a map.
-    $('#mapDiv .content').append(googleMap);
-  }
-};
-
-/**
- * Main control between data and views.
- * @namespace
- */
-var controller = {
-  /**
-   * Initializes the page.
-   * @memberof controller
-   * @method init
-   */
-  init: function() {
-    // Track click locations.
-    $(document).click(function(loc) {
-                          logClicks(loc.pageX, loc.pageY);
-                      });
-
-    // Render all the sections.
-    bioView.render();
-    workView.render();
-    projectsView.render();
-    educationView.render();
-    mapView.render();
-    footerView.render(bioView.formatContactList());
-  },
-
-  /**
-   * Returns bio data.
-   * @returns {object}
-   */
-  getBio: function() {
-    return bio;
-  },
-
-  /**
-   * Returns education data.
-   * @returns {object}
-   */
-  getEducation: function() {
-    return education;
-  },
-
-  /**
-   * Returns project data.
-   * @returns {object}
-   */
-  getProjects: function() {
-    return projects;
-  },
-
-  /**
-   * Returns work data.
-   * @returns {object}
-   */
-  getWork: function() {
-    return work;
-  }
-};
-
-// Initialize the page.
-controller.init();
+// Track click locations.
+$(document).click(function(loc) {
+                      logClicks(loc.pageX, loc.pageY);
+                  });
