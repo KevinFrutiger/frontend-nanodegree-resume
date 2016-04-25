@@ -18,16 +18,16 @@ var bio = {
   "name": "Kevin Frutiger",
   "role": "Front-end Web Developer",
   "contacts": {
-    "mobile": "xxx-xxx-xxxx",
+    "mobile": "",
     "email": "webmessage@frutigergroup.com",
     "github": "KevinFrutiger",
     "twitter": "@KevinFrutiger",
     "location": "South San Francisco, CA, USA"
   },
-  "welcomeMessage": "Front-end Web Developer with creative skills in addition to technical skills. Proficient in scripting languages and multimedia production tools. Experienced collaborating in global, cross-functional teams.",
-  "skills": ["HTML5", "CSS", "SASS", "Bootstrap", "JavaScript", "jQuery", "Git",
-             "Grunt", "Flash CC", "Photoshop CC", "Premiere Pro CC",
-             "Illustrator CC", "Blender"],
+  "welcomeMessage": "Front-end Web Developer with visual skills. Proficient in scripting languages and multimedia production tools. Experienced collaborating in global, cross-functional teams.",
+  "skills": ["HTML5", "CSS", "Bootstrap", "JavaScript", "jQuery", "Git",
+             "Grunt", "Animate CC", "Photoshop CC", "Premiere Pro CC",
+             "Illustrator CC", "Blender", "Maya"],
   "biopic": ["images/kevin-frutiger@1x.jpg", "images/kevin-frutiger@2x.jpg"]
 };
 
@@ -44,14 +44,14 @@ var education = {
       "location": "Wichita, KS",
       "degree": "Bachelor of Fine Arts",
       "majors": ["Graphic Design"],
-      "dates": 2005,
+      "dates": null,
       "url": "http://www.wichita.edu/"
     },{
       "name": "Art Institute of Colorado",
       "location": "Denver, CO",
       "degree": "Associate of Applied Science",
       "majors": ["Computer Animation"],
-      "dates": 1999,
+      "dates": null,
       "url": "https://www.artinstitutes.edu/denver/"
     }],
   "onlineCourses": [{
@@ -74,38 +74,38 @@ var work = {
       "employer": "Google",
       "title": "Technical Vendor Program Manager",
       "location": "San Francisco, CA",
-      "dates": "Oct 2013 – February 2015",
-      "description": "Managed technical vendor programs to support global, top-tier DoubleClick Rich Media and AdWords Display Ad Builder customers."
+      "dates": "2014 – 2015",
+      "description": "Managed support resources for global, top-tier DoubleClick Rich Media and AdWords Display Ad Builder customers"
     },{
       "employer": "Google",
       "title": "Creative Technical Specialist",
       "location": "San Francisco, CA",
-      "dates": "Oct 2011 – February 2013",
-      "description": "Provided DoubleClick Studio technical consultation and troubleshooting for creative and media agencies. Created build guides and video training for core and advanced features of Studio to scale support, including Fundamentals, Dynamic Creative, and VPAID."
+      "dates": "2011 – 2014",
+      "description": "Advised agencies on DoubleClick Studio capabilities and provided support to resolve issues (phone / email / tickets)"
     },{
       "employer": "Google",
       "title": "Rich Media Production Specialist",
       "location": "San Francisco, CA",
-      "dates": "March 2008 – Oct 2013",
-      "description": "Updated clients’ ActionScript for deployment in DoubleClick Studio."
+      "dates": "2008 – 2011",
+      "description": "Revised clients’ ActionScript for DoubleClick Rich Media, with 98% accuracy to delight Campaign Managers and clients"
     },{
       "employer": "Dish Network",
       "title": "Instructional Media Developer",
       "location": "San Francisco, CA",
-      "dates": "Oct 2007 – March 2008",
-      "description": "Created e-learning simulations, interactions, and animations with ActionScript, Flash, Photoshop, and Blender."
+      "dates": "2007 – 2008",
+      "description": "Created simulations and animations with Flash / AS, Photoshop, and Blender to make engaging eLearning courses"
     },{
       "employer": "CleverMedia",
-      "title": "Flash Game Programmer (contract)",
+      "title": "Flash Game Programmer",
       "location": "Denver, CO",
-      "dates": "March 2007 – Oct 2007",
-      "description": "Utilized ActionScript to realize clients’ game concepts."
+      "dates": "2007",
+      "description": "Utilized ActionScript to realize clients’ game concepts"
     },{
       "employer": "Active Education",
       "title": "Instructional Media Developer",
       "location": "Denver, CO",
-      "dates": "Oct 2004 – March 2007",
-      "description": "Utilized ActionScript to realize clients’ game concepts."
+      "dates": "2005 – 2007",
+      "description": "Created interactions and animations with Flash / AS and Photoshop to make engaging eLearning courses"
     }]
 };
 
@@ -271,7 +271,7 @@ var educationView = {
     schoolDegree: ' -- %data%</a>',
     schoolDates: '<div class="date-text">%data%</div>',
     schoolLocation: '<div class="location-text">%data%</div>',
-    schoolMajor: '<em><br>Major: %data%</em>',
+    schoolMajor: '<em>Major: %data%</em>',
     onlineClasses: '<h3>Online Classes</h3>',
     onlineTitle: '<a href="#" target="_blank">%data%',
     onlineSchool: ' - %data%</a>',
@@ -302,8 +302,11 @@ var educationView = {
         formattedName = formattedName.replace('#', school.url);
         var formattedDegree = this.HTMLstrings.schoolDegree.replace(
                                   '%data%', school.degree);
-        var formattedSchoolDates = this.HTMLstrings.schoolDates.replace(
-                                       '%data%', school.dates);
+        var formattedSchoolDates = '';
+        if (school.dates) {
+          formattedSchoolDates = this.HTMLstrings.schoolDates.replace(
+                                                 '%data%', school.dates);
+        }
         var formattedLocation = this.HTMLstrings.schoolLocation.replace(
                                     '%data%', school.location);
         var formattedMajor = this.HTMLstrings.schoolMajor.replace(
