@@ -28,7 +28,7 @@ var bio = {
   "skills": ["HTML5", "CSS", "SASS", "Bootstrap", "JavaScript", "jQuery", "Git",
              "Grunt", "Flash CC", "Photoshop CC", "Premiere Pro CC",
              "Illustrator CC", "Blender"],
-  "biopic": "images/kevin-frutiger@1x.jpg"
+  "biopic": ["images/kevin-frutiger@1x.jpg"]
 };
 
 /**
@@ -116,32 +116,41 @@ var work = {
  */
 var projects = {
   "projects": [{
-      "title": "Project 1",
-      "dates": "2015",
-      "description": "This is Project 1’s description.",
-      "images": ["images/portfolio-thumbnail-placeholder@1x.png",
-                 "images/portfolio-thumbnail-placeholder@1x.png"]
+      "title": "Portfolio",
+      "dates": "2015-2016",
+      "description": "Portfolio page built from a mock-up PDF utilizing Bootstrap for a responsive layout.",
+      "images": [["images/portfolio-thumb@1x.png","images/portfolio-thumb@2x.png"]]
     },{
-      "title": "Project 2",
-      "dates": "2015",
-      "description": "This is Project 2’s description.",
-      "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
+      "title": "Résumé",
+      "dates": "2015-2016",
+      "description": "Résumé utilizing jQuery and JSON objects for each section. You're viewing this now.",
+      "images": [["images/resume-thumb@1x.png", "images/resume-thumb@2x.png"]]
     },{
-      "title": "Project 3",
+      "title": "Arcade Game Clone",
       "dates": "2015",
-      "description": "This is Project 3’s description.",
-      "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
+      "description": "Clone of the classic arcade game <em>Frogger</em> uses pseudo-classical JavaScript OOP to create player and enemy entities.",
+      "images": [["images/arcade-game-thumb@1x.png", "images/arcade-game-thumb@2x.png"]]
     },{
-      "title": "Project 4",
+      "title": "Website Optimization",
       "dates": "2015",
-      "description": "This is Project 4’s description.",
-      "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
+      "description": "Project to optimize CRP and rendering performance during user interaction.",
+      "images": [["images/web-optimization-thumb@1x.png", "images/web-optimization-thumb@2x.png"]]
     },{
-      "title": "Project 5",
+      "title": "Neighborhood Map",
       "dates": "2015",
-      "description": "This is Project 5’s description.",
-      "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
-    }]
+      "description": "Application utilizing Knockout.js to display a filterable list of places as markers on a Google Map.",
+      "images": [["images/neighborhood-map-thumb@1x.png", "images/neighborhood-map-thumb@2x.png"]]
+    },{
+      "title": "Feed Reader Testing",
+      "dates": "2015",
+      "description": "Application utilizing Backbone.js to allow the user to query food items and save a calorie total for the day.",
+      "images": [["images/feed-reader-testing-thumb@1x.png", "images/feed-reader-testing-thumb@2x.png"]]
+    },{
+      "title": "Health Tracker",
+      "dates": "2016",
+      "description": "Project to write Jasmine tests for an existing RSS feed reading application.",
+      "images": [["images/health-tracker-thumb@1x.png", "images/health-tracker-thumb@2x.png"]]
+    },]
 };
 
 /**
@@ -408,7 +417,8 @@ var projectsView = {
     projectTitle: '<a href="#">%data%</a>',
     projectDates: '<div class="date-text">%data%</div>',
     projectDescription: '<p><br>%data%</p>',
-    projectImage: '<img src="%data%">'
+    // These thumbnails are cosmetic, so alt is empty.
+    projectImage: '<img srcset="%data1% 2x" src="%data2%" alt="" >'
   },
 
   /**
@@ -438,8 +448,13 @@ var projectsView = {
       // Build array of HTML strings for the images
       var formattedImages = [];
       for (var j = 0, jlen = project.images.length; j < jlen; j++) {
-        formattedImages.push(
-            this.HTMLstrings.projectImage.replace('%data%', project.images[j]));
+        if (project.images.length) {
+          var imgStr = this.HTMLstrings.projectImage;
+          imgStr = imgStr.replace('%data1%', project.images[j][1])
+                         .replace('%data2%', project.images[j][0]);
+          formattedImages.push(imgStr);
+
+        }
       }
 
       // Prepare the object
