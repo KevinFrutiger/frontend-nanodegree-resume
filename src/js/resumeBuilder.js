@@ -28,7 +28,7 @@ var bio = {
   "skills": ["HTML5", "CSS", "SASS", "Bootstrap", "JavaScript", "jQuery", "Git",
              "Grunt", "Flash CC", "Photoshop CC", "Premiere Pro CC",
              "Illustrator CC", "Blender"],
-  "biopic": ["images/kevin-frutiger@1x.jpg"]
+  "biopic": ["images/kevin-frutiger@1x.jpg", "images/kevin-frutiger@2x.jpg"]
 };
 
 /**
@@ -177,7 +177,7 @@ var bioView = {
            '<span class="contact-item">%data%</span></li>',
     location: '<li class="flex-item"><span class="contact-labels">location' +
                '</span><span class="contact-item">%data%</span></li>',
-    bioPic: '<img src="%data%" class="biopic" width="211" height="211">',
+    bioPic: '<img srcset="%data1% 2x" src="%data2%" class="biopic" width="211" height="211" alt="%altTextData%">',
     welcomeMsg: '<p class="welcome-message">%data%</p>',
     skillsStart: '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills">'+
                   '</ul>',
@@ -194,7 +194,13 @@ var bioView = {
 
     var formattedName = this.HTMLstrings.headerName.replace('%data%', bio.name);
     var formattedRole = this.HTMLstrings.headerRole.replace('%data%', bio.role);
-    var formattedBioPic = this.HTMLstrings.bioPic.replace('%data%', bio.biopic);
+    var formattedBioPic = '';
+    if (bio.biopic.length) {
+      formattedBioPic = this.HTMLstrings.bioPic;
+      formattedBioPic = this.HTMLstrings.bioPic.replace('%data1%', bio.biopic[1])
+                                               .replace('%data2%', bio.biopic[0])
+                                               .replace('%altTextData%', bio.name);
+    }
     var formattedWelcomeMessage = this.HTMLstrings.welcomeMsg.replace(
                                       '%data%', bio.welcomeMessage);
 
