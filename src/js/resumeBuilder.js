@@ -3,15 +3,6 @@
  * @author Kevin Frutiger [webmessage@frutigergroup.com]
  */
 
-
-/*
- * Class note: contrary to techniques suggested in the course, I'm always using
- * for loops instead of for...in loops to loop over arrays, to assure
- * proper order, etc.
- * http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#for-in_loop
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
- */
-
 /* Define an object for each section, to hold data for that section. */
 
 /**
