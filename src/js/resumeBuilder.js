@@ -179,7 +179,7 @@ var bioView = {
                '</span><span class="contact-item">%data%</span></li>',
     bioPic: '<img srcset="%data1% 2x" src="%data2%" class="biopic" width="211" height="211" alt="%altTextData%">',
     welcomeMsg: '<p class="welcome-message">%data%</p>',
-    skillsStart: '<h3 id="skills-h3">Skills at a Glance:</h3><ul id="skills">'+
+    skillsStart: '<h2 id="skills-heading">Skills at a Glance:</h2><ul id="skills">'+
                   '</ul>',
     skills: '<li><span class="skill-text">%data%</span></li>'
   },
@@ -266,15 +266,15 @@ var bioView = {
 var educationView = {
   // HTML markup to format the data.
   HTMLstrings: {
-    schoolStart: '<div class="education-entry"></div>',
-    schoolName: '<a href="#" target="_blank">%data%',
-    schoolDegree: ' -- %data%</a>',
+    schoolStart: '<li class="education-entry"></li>',
+    schoolName: '<h3><a href="#" target="_blank">%data%',
+    schoolDegree: ' -- %data%</a></h3>',
     schoolDates: '<div class="date-text">%data%</div>',
     schoolLocation: '<div class="location-text">%data%</div>',
     schoolMajor: '<em>Major: %data%</em>',
-    onlineClasses: '<h3>Online Classes</h3>',
-    onlineTitle: '<a href="#" target="_blank">%data%',
-    onlineSchool: ' - %data%</a>',
+    onlineClasses: '<h3 class="online-classes">Online Classes</h3>',
+    onlineTitle: '<h4><a href="#" target="_blank">%data%',
+    onlineSchool: ' - %data%</a></h4>',
     onlineDates: '<div class="date-text">%data%</div>',
     onlineURL: '<br><a href="#" target="_blank">%data%</a>'
   },
@@ -291,6 +291,9 @@ var educationView = {
     var $education = $('#education .content');
 
     if (education.schools && education.schools.length > 0) {
+
+      var $educationList = $('<ul></ul>');
+      $educationList.appendTo($education);
 
       for (var i = 0, len = education.schools.length; i < len; i++) {
         var $school = $(this.HTMLstrings.schoolStart);
@@ -319,7 +322,7 @@ var educationView = {
                .append(formattedMajor);
 
         // Add object to the page
-        $education.append($school);
+        $educationList.append($school);
       }
     }
 
@@ -328,8 +331,12 @@ var educationView = {
       // Add the online classes header
       $education.append(this.HTMLstrings.onlineClasses);
 
+      var $onlineClassList = $('<ul></ul>');
+      $onlineClassList.appendTo($education);
+
       for (var i2 = 0, len2 = education.onlineCourses.length; i2 < len2; i2++) {
-        var $course = $(this.HTMLstrings.schoolStart);
+        var $course = $('<li></li>');
+        $course = $(this.HTMLstrings.schoolStart);
         var course = education.onlineCourses[i2];
 
         // Format data
@@ -350,7 +357,7 @@ var educationView = {
                .append(formattedUrl);
 
         // Add object to the page
-        $education.append($course);
+        $onlineClassList.append($course);
       }
     }
   }
@@ -364,9 +371,9 @@ var educationView = {
 var workView = {
   // HTML markup to format the data.
   HTMLstrings: {
-    workStart: '<div class="work-entry"></div>',
-    workEmployer: '<div class="employer-text">%data%',
-    workTitle: ' - %data%</div>',
+    workStart: '<li class="work-entry"></li>',
+    workEmployer: '<h3 class="employer-text">%data%',
+    workTitle: ' - %data%</h3>',
     workDates: '<div class="date-text">%data%</div>',
     workLocation: '<div class="location-text">%data%</div>',
     workDescription: '<p>%data%</p>'
@@ -383,7 +390,7 @@ var workView = {
     // If there are no jobs, stop function execution.
     if (!jobs || jobs.length === 0) return;
 
-    var $workExperience = $('#workExperience .content');
+    var $workExperience = $('#workExperience .content ul');
 
     for (var i = 0, len = jobs.length; i < len; i++) {
       var job = jobs[i];
@@ -422,8 +429,8 @@ var workView = {
 var projectsView = {
   // HTML markup to format the data.
   HTMLstrings: {
-    projectStart: '<div class="project-entry col-4"></div>',
-    projectTitle: '<a href="#">%data%</a>',
+    projectStart: '<li class="project-entry col-4"></li>',
+    projectTitle: '<h3><a href="#">%data%</a></h3>',
     projectDates: '<div class="date-text">%data%</div>',
     projectDescription: '<p><br>%data%</p>',
     // These thumbnails are cosmetic, so alt is empty.

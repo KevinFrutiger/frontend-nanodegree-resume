@@ -56,7 +56,7 @@ replace the %data% placeholder text you see in them.
 // var HTMLonlineURL = '<br><a href="#" target="_blank">%data%</a>';
 
 var internationalizeButton = '<button>Internationalize</button>';
-var googleMap = '<div id="map"></div>';
+var googleMap = '<div id="map""></div>';
 
 
 /*

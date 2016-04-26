@@ -30,7 +30,6 @@ h6 {
 }
 
 h2,
-h3,
 h4,
 h5 {
   padding:10px 0;
@@ -51,15 +50,14 @@ h2 {
   line-height: 29px;
 }
 
+
+
 h3 {
-  font-style: italic;
-  font-size: 20px;
-  color: #999;
-  line-height: 22px;
-  padding: 0;
-  margin-top: 1em;
-  font-weight: normal;
+  font-size: inherit;
+  font-weight: inherit;
+  margin-top: 10px;
 }
+
 
 h4 {
   font-weight: bold;
@@ -72,11 +70,10 @@ hr {
   margin: 20px 0;
 }
 
+header,
 section {
   padding-bottom: 20px;
 }
-
-
 
 .job-title {
   display: inline-block;
@@ -85,14 +82,14 @@ section {
 }
 
 .employer-text {
-  color: #808080;
+  color: #6f6f6f;
   font-weight: bold;
 }
 
 .date-text {
   font-style: italic;
   font-size: 14px;
-  color: #999;
+  color: #6f6f6f;
   line-height: 1.14;
   float: left;
 }
@@ -100,7 +97,7 @@ section {
 .location-text {
   font-style: italic;
   font-size: 14px;
-  color: #999;
+  color: #6f6f6f;
   line-height: 1.14;
   float: right;
 }
@@ -118,7 +115,6 @@ p {
 a {
   color: #676767;
   text-decoration: none;
-  margin-top: 10px;
   display: block;
 }
 
@@ -137,12 +133,22 @@ a {
   padding: 0 5%;
 }
 
-#skills-h3 {
+#skills-heading {
   color: #d0830d;
   display: none;
   margin: 20px 0 0;
   padding: 10px 0 0;
   font-weight: bold;
+}
+
+.online-classes {
+  font-style: italic;
+  font-size: 20px;
+  color: #6f6f6f;
+  line-height: 22px;
+  padding: 0;
+  margin-top: 1em;
+  font-weight: normal;
 }
 
 .color3 {
@@ -264,7 +270,7 @@ span {
 }
 
 .education-entry {
-  color: #999;
+  color: #6f6f6f;
 }
 
 .grid {
@@ -357,7 +363,7 @@ span {
 }
 
 @media only screen and (min-width: 750px) {
-  #skills-h3,
+  #skills-heading,
   .biopic {
     display: block;
   }
