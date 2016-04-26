@@ -119,37 +119,44 @@ var projects = {
       "title": "Portfolio",
       "dates": "2015-2016",
       "description": "Portfolio page built from a mock-up PDF utilizing Bootstrap for a responsive layout.",
-      "images": [["images/portfolio-thumb@1x.png","images/portfolio-thumb@2x.png"]]
+      "images": [["images/portfolio-thumb@1x.png","images/portfolio-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/frontend-nanodegree-portfolio"
     },{
       "title": "Résumé",
       "dates": "2015-2016",
       "description": "Résumé utilizing jQuery and JSON objects for each section. You're viewing this now.",
-      "images": [["images/resume-thumb@1x.png", "images/resume-thumb@2x.png"]]
+      "images": [["images/resume-thumb@1x.png", "images/resume-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/frontend-nanodegree-resume"
     },{
       "title": "Arcade Game Clone",
       "dates": "2015",
       "description": "Clone of the classic arcade game <em>Frogger</em> uses pseudo-classical JavaScript OOP to create player and enemy entities.",
-      "images": [["images/arcade-game-thumb@1x.png", "images/arcade-game-thumb@2x.png"]]
+      "images": [["images/arcade-game-thumb@1x.png", "images/arcade-game-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/frontend-nanodegree-arcade-game"
     },{
       "title": "Website Optimization",
       "dates": "2015",
       "description": "Project to optimize CRP and rendering performance during user interaction.",
-      "images": [["images/web-optimization-thumb@1x.png", "images/web-optimization-thumb@2x.png"]]
+      "images": [["images/web-optimization-thumb@1x.png", "images/web-optimization-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/frontend-nanodegree-web-optimization"
     },{
       "title": "Neighborhood Map",
       "dates": "2015",
       "description": "Application utilizing Knockout.js to display a filterable list of places as markers on a Google Map.",
-      "images": [["images/neighborhood-map-thumb@1x.png", "images/neighborhood-map-thumb@2x.png"]]
+      "images": [["images/neighborhood-map-thumb@1x.png", "images/neighborhood-map-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/frontend-nanodegree-neighborhood-map"
     },{
       "title": "Feed Reader Testing",
       "dates": "2015",
       "description": "Application utilizing Backbone.js to allow the user to query food items and save a calorie total for the day.",
-      "images": [["images/feed-reader-testing-thumb@1x.png", "images/feed-reader-testing-thumb@2x.png"]]
+      "images": [["images/feed-reader-testing-thumb@1x.png", "images/feed-reader-testing-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/frontend-nanodegree-feed-reader"
     },{
       "title": "Health Tracker",
       "dates": "2016",
       "description": "Project to write Jasmine tests for an existing RSS feed reading application.",
-      "images": [["images/health-tracker-thumb@1x.png", "images/health-tracker-thumb@2x.png"]]
+      "images": [["images/health-tracker-thumb@1x.png", "images/health-tracker-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/frontend-nanodegree-health-tracker"
     },]
 };
 
@@ -430,7 +437,7 @@ var projectsView = {
   // HTML markup to format the data.
   HTMLstrings: {
     projectStart: '<li class="project-entry col-4"></li>',
-    projectTitle: '<h3><a href="#">%data%</a></h3>',
+    projectTitle: '<h3><a href="#" aria-label="%data% project">%data%</a></h3>',
     projectDates: '<div class="date-text">%data%</div>',
     projectDescription: '<p><br>%data%</p>',
     // These thumbnails are cosmetic, so alt is empty.
@@ -455,7 +462,9 @@ var projectsView = {
 
       // Format data
       var formattedTitle = this.HTMLstrings.projectTitle.replace(
-                               '%data%', project.title);
+                               /\%data\%/g, project.title);
+      formattedTitle = formattedTitle.replace(
+                           'href="#"', 'href="' + project.url + '"');
       var formattedDates = this.HTMLstrings.projectDates.replace(
                                '%data%', project.dates);
       var formattedDescription = this.HTMLstrings.projectDescription.replace(
@@ -546,7 +555,7 @@ var controller = {
     workView.render();
     projectsView.render();
     educationView.render();
-    mapView.render();
+    //mapView.render();
     footerView.render(bioView.formatContactList());
   },
 
