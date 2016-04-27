@@ -50,8 +50,6 @@ h2 {
   line-height: 29px;
 }
 
-
-
 h3 {
   font-size: inherit;
   font-weight: inherit;
@@ -70,6 +68,10 @@ hr {
 
 section {
   padding-bottom: 20px;
+}
+
+main { /* IE11- */
+  display: block;
 }
 
 .job-title {
@@ -134,7 +136,6 @@ a {
 
 #skills-heading {
   color: #d0830d;
-  display: none;
   margin: 20px 0 0;
   padding: 10px 0 0;
   font-weight: bold;
