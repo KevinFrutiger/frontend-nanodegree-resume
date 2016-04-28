@@ -62,8 +62,6 @@ var education = {
     }]
 };
 
-// TODO: Replace job descriptions with bulleted lists. Requires display
-// function and helper functions to be updated to accept them.
 /**
  * A JSON object that holds work information.
  * @property {Array.<string>} jobs An array of objects containing information
@@ -75,37 +73,37 @@ var work = {
       "title": "Technical Vendor Program Manager",
       "location": "San Francisco, CA",
       "dates": "2014 – 2015",
-      "description": "Managed support resources for global, top-tier DoubleClick Rich Media and AdWords Display Ad Builder customers"
+      "description": "<li>Managed support resources for global, top-tier DoubleClick Rich Media and AdWords Display Ad Builder customers</li><li>Supported template creation at scale for Google Web Designer’s Start-from-Template release</li>"
     },{
       "employer": "Google",
       "title": "Creative Technical Specialist",
       "location": "San Francisco, CA",
       "dates": "2011 – 2014",
-      "description": "Advised agencies on DoubleClick Studio capabilities and provided support to resolve issues (phone / email / tickets)"
+      "description": "<li>Advised agencies on DoubleClick Studio capabilities and provided support to resolve issues (phone / email / tickets)</li><li>Conducted weekly Studio Fundamentals webinar to assure success of new Studio users</li>"
     },{
       "employer": "Google",
       "title": "Rich Media Production Specialist",
       "location": "San Francisco, CA",
       "dates": "2008 – 2011",
-      "description": "Revised clients’ ActionScript for DoubleClick Rich Media, with 98% accuracy to delight Campaign Managers and clients"
+      "description": "<li>Revised clients’ ActionScript for DoubleClick Rich Media, with 98% accuracy to delight Campaign Managers and clients</li><li>Prototyped tool in Python / Django / App Engine with QA team to increase efficiency of global Rich Media production</li>"
     },{
       "employer": "Dish Network",
       "title": "Instructional Media Developer",
       "location": "San Francisco, CA",
       "dates": "2007 – 2008",
-      "description": "Created simulations and animations with Flash / AS, Photoshop, and Blender to make engaging eLearning courses"
+      "description": "<li>Created simulations and animations with Flash / AS, Photoshop, and Blender to make engaging eLearning courses</li>"
     },{
       "employer": "CleverMedia",
       "title": "Flash Game Programmer",
       "location": "Denver, CO",
       "dates": "2007",
-      "description": "Utilized ActionScript to realize clients’ game concepts"
+      "description": "<li>Utilized ActionScript to realize clients’ game concepts</li>"
     },{
       "employer": "Active Education",
       "title": "Instructional Media Developer",
       "location": "Denver, CO",
       "dates": "2005 – 2007",
-      "description": "Created interactions and animations with Flash / AS and Photoshop to make engaging eLearning courses"
+      "description": "<li>Created interactions and animations with Flash / AS and Photoshop to make engaging eLearning courses</li>"
     }]
 };
 
@@ -383,7 +381,7 @@ var workView = {
     workTitle: ' - %data%</h3>',
     workDates: '<div class="date-text">%data%</div>',
     workLocation: '<div class="location-text">%data%</div>',
-    workDescription: '<p>%data%</p>'
+    workDescription: '<ul class="work-entry-list">%data%</ul>'
   },
 
   /**
@@ -577,6 +575,7 @@ var controller = {
 
   /**
    * Returns bio data.
+   * @memberof controller
    * @returns {object}
    */
   getBio: function() {
@@ -585,6 +584,7 @@ var controller = {
 
   /**
    * Returns education data.
+   * @memberof controller
    * @returns {object}
    */
   getEducation: function() {
@@ -593,6 +593,7 @@ var controller = {
 
   /**
    * Returns project data.
+   * @memberof controller
    * @returns {object}
    */
   getProjects: function() {
@@ -601,6 +602,7 @@ var controller = {
 
   /**
    * Returns work data.
+   * @memberof controller
    * @returns {object}
    */
   getWork: function() {
