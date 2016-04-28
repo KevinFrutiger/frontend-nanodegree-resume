@@ -116,32 +116,33 @@ function initializeMap() {
   map = new google.maps.Map(document.querySelector('#map'), mapOptions);
 
 
+
   /*
   locationFinder() returns an array of every location string from the JSONs
   written for bio, education, and work.
   */
-  function locationFinder() {
+  // function locationFinder() {
 
-    // initializes an empty array
-    var locations = [];
+  //   // initializes an empty array
+  //   var locations = [];
 
-    // adds the single location property from bio to the locations array
-    locations.push(bio.contacts.location);
+  //   // adds the single location property from bio to the locations array
+  //   locations.push(bio.contacts.location);
 
-    // iterates through school locations and appends each location to
-    // the locations array
-    for (var school in education.schools) {
-      locations.push(education.schools[school].location);
-    }
+  //   // iterates through school locations and appends each location to
+  //   // the locations array
+  //   for (var school in education.schools) {
+  //     locations.push(education.schools[school].location);
+  //   }
 
-    // iterates through work locations and appends each location to
-    // the locations array
-    for (var job in work.jobs) {
-      locations.push(work.jobs[job].location);
-    }
+  //   // iterates through work locations and appends each location to
+  //   // the locations array
+  //   for (var job in work.jobs) {
+  //     locations.push(work.jobs[job].location);
+  //   }
 
-    return locations;
-  }
+  //   return locations;
+  // }
 
   /*
   createMapMarker(placeData) reads Google Places search results to create map pins.
@@ -222,7 +223,7 @@ function initializeMap() {
   window.mapBounds = new google.maps.LatLngBounds();
 
   // locations is an array of location strings returned from locationFinder()
-  locations = locationFinder();
+  locations = controller.locationFinder();
 
   // pinPoster(locations) creates pins on the map for each location in
   // the locations array

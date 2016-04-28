@@ -256,13 +256,39 @@ span {
   text-align: center;
 }
 
-#map {
-  height: 100%;
-}
-
 #mapDiv .content {
   height: 400px;
   padding-bottom: 5%;
+  -webkit-display: flex;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+#places-list {
+  padding: 10px;
+  order: 2;
+}
+
+#places-list > li {
+  display: inline;
+  padding-right: 10px;
+}
+
+#places-list > li:not(:last-child)::after {
+  content: ';';
+  padding-right 0;
+}
+
+/* Gives us a full height in the flexbox for #map to fill
+   so Google Map renders the desired height. */
+#map-wrapper {
+  flex: 1;
+  height: 100%;
+}
+
+#map {
+  height: 100%;
 }
 
 .work-entry:not(:last-child) {

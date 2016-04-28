@@ -529,8 +529,24 @@ var mapView = {
    * @method render
    */
   render: function() {
+
+    // Add A11y list of places.
+    var $locationList = $('<ul id="places-list"></ul>');
+    var locations = controller.locationFinder().sort();
+
+    for (var i = 0, len = locations.length; i < len; i++) {
+      $locationList.append('<li>' + locations[i] + '</li>');
+    }
+
+    // Add a list for screenreaders. Place before map so screenreaders read
+    // it first.
+    var $mapDiv = $('#mapDiv .content');
+    $mapDiv.append($locationList);
+
     // Add a map.
-    $('#mapDiv .content').append(googleMap);
+    var $mapWrapper = $('<div id=\"map-wrapper\"></div>');
+    $mapWrapper.append(googleMap);
+    $mapDiv.append($mapWrapper);
   }
 };
 
@@ -555,7 +571,7 @@ var controller = {
     workView.render();
     projectsView.render();
     educationView.render();
-    //mapView.render();
+    mapView.render();
     footerView.render(bioView.formatContactList());
   },
 
@@ -589,6 +605,38 @@ var controller = {
    */
   getWork: function() {
     return work;
+  },
+
+  /**
+   * Returns de-duped array containing current, school, and work locations.
+   * @returns {array}
+   */
+  locationFinder: function() {
+
+    var locations = [];
+
+    // Add the single location property from bio.
+    locations.push(bio.contacts.location);
+
+    // Add the school locations.
+    for (var schoolIndex = 0, schoolLen = education.schools.length;
+         schoolIndex < schoolLen;
+         schoolIndex++) {
+      if (locations.indexOf(education.schools[schoolIndex]) === -1) {
+        locations.push(education.schools[schoolIndex].location);
+      }
+    }
+
+    // Add the work locations.
+    for (var jobsIndex = 0, jobsLen = work.jobs.length;
+         jobsIndex < jobsLen;
+         jobsIndex++) {
+      if (locations.indexOf(work.jobs[jobsIndex].location) === -1) {
+        locations.push(work.jobs[jobsIndex].location);
+      }
+    }
+
+    return locations;
   }
 };
 
