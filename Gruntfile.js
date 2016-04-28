@@ -11,20 +11,18 @@ module.exports = function(grunt) {
           sizes: [{
             width: '100%',
             rename: false,
-            suffix: '@3x',
-            quality: 70
-          },
-          {
-            width: '66.66%',
-            rename: false,
             suffix: '@2x',
             quality: 70
           },
           {
-            width: '33.33%',
+            width: '50%',
             rename: false,
             suffix: '@1x',
-            quality: 70
+            quality: 70,
+            sharpen: {
+              sigma: 1,
+              radius: 2
+            }
           }]
         },
 
