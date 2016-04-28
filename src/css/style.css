@@ -259,14 +259,16 @@ span {
 #mapDiv .content {
   height: 400px;
   padding-bottom: 5%;
-  -webkit-display: flex;
+  -webkit-display: flex; /* Safari 8 */
   display: flex;
+  -webkit-flex-direction: column; /* Safari 8 */
   flex-direction: column;
   position: relative;
 }
 
 #places-list {
   padding: 10px;
+  -webkit-order: 2; /* Safari 8 */
   order: 2;
 }
 
