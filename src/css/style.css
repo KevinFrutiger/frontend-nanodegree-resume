@@ -74,6 +74,10 @@ main { /* IE11- */
   display: block;
 }
 
+#workExperience > h2 {
+  padding-top: 35px;
+}
+
 .job-title {
   display: inline-block;
   color: #A5A5A5;
@@ -181,12 +185,10 @@ a {
   background-color: #243140;
 }
 
-/* TODO: Replace with image later */
 #header {
   padding-top: 20px;
-  padding-bottom: 64px;
+  padding-bottom: 39px;
 }
-
 
 .flex-box {
   display: -webkit-flex;
