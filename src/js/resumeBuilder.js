@@ -155,7 +155,7 @@ var projects = {
       "description": "Project to write Jasmine tests for an existing RSS feed reading application.",
       "images": [["images/health-tracker-thumb@1x.png", "images/health-tracker-thumb@2x.png"]],
       "url": "https://github.com/KevinFrutiger/frontend-nanodegree-health-tracker"
-    },]
+    }]
 };
 
 /**

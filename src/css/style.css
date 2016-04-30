@@ -188,6 +188,7 @@ a {
 #header {
   padding-top: 20px;
   padding-bottom: 39px;
+  /*max-height: 359px;*/ /* Keeps the edge of the header from shifting after font load. That edge is the most jarring shift. */
 }
 
 .flex-box {
@@ -204,6 +205,7 @@ a {
 
 ul {
   list-style-type: none;
+  line-height: 1.25; /* normalize Chrome to IE and FF */
 }
 
 .biopic {
@@ -247,7 +249,7 @@ ul {
 }
 
 span {
-  padding: 5px;
+  padding: 0 5px; /* Chrome and FF collapse top and bottom padding, but IE does not. */
 }
 
 #lets-connect {
@@ -255,9 +257,7 @@ span {
 }
 
 #mapDiv .content {
-  height: 400px;
-  padding-bottom: 5%;
-  -webkit-display: flex; /* Safari 8 */
+  display: -webkit-flex; /* Safari 8 */
   display: flex;
   -webkit-flex-direction: column; /* Safari 8 */
   flex-direction: column;
@@ -277,14 +277,12 @@ span {
 
 #places-list > li:not(:last-child)::after {
   content: ';';
-  padding-right 0;
+  padding-right: 0;
 }
 
-/* Gives us a full height in the flexbox for #map to fill
-   so Google Map renders the desired height. */
+/* Gives us some flexibility when adjusting height of map */
 #map-wrapper {
-  flex: 1;
-  height: 100%;
+  height: 400px;
 }
 
 #map {
@@ -329,12 +327,6 @@ span {
 
 /* Media queries to handle various device widths */
 
-@media only screen and (max-width: 1024px) {
-  #lets-connect {
-    margin-top: 5%;
-  }
-}
-
 @media only screen and (max-width:900px) {
   .biopic {
     width: 175px;
@@ -348,9 +340,6 @@ span {
 }
 
 @media only screen and (max-width: 750px) {
-  #lets-connect {
-    margin-top: 10%;
-  }
   .welcome-message {
     display: none;
   }
@@ -393,6 +382,10 @@ span {
 
   .flex-item span:last-child {
     padding-right: 0;
+  }
+
+  #map-wrapper {
+    height: 200px;
   }
 
   #skills {
