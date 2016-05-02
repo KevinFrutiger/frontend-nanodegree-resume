@@ -233,7 +233,7 @@ var bioView = {
   },
 
   /**
-   * Returns array of &lt;li&gt; tags containing contact information.
+   * Returns array of &lt;li&gt; tag strings containing contact information.
    * @memberof bioView
    * @method formatContactList
    * @returns {Array.<strings>}

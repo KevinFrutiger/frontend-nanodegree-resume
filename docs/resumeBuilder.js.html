@@ -31,15 +31,6 @@
  * @author Kevin Frutiger [webmessage@frutigergroup.com]
  */
 
-
-/*
- * Class note: contrary to techniques suggested in the course, I'm always using
- * for loops instead of for...in loops to loop over arrays, to assure
- * proper order, etc.
- * http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml#for-in_loop
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
- */
-
 /* Define an object for each section, to hold data for that section. */
 
 /**
@@ -55,17 +46,17 @@ var bio = {
   "name": "Kevin Frutiger",
   "role": "Front-end Web Developer",
   "contacts": {
-    "mobile": "xxx-xxx-xxxx",
+    "mobile": "",
     "email": "webmessage@frutigergroup.com",
     "github": "KevinFrutiger",
     "twitter": "@KevinFrutiger",
     "location": "South San Francisco, CA, USA"
   },
-  "welcomeMessage": "Front-end Web Developer with creative skills in addition to technical skills. Proficient in scripting languages and multimedia production tools. Experienced collaborating in global, cross-functional teams.",
-  "skills": ["HTML5", "CSS", "SASS", "Bootstrap", "JavaScript", "jQuery", "Git",
-             "Grunt", "Flash CC", "Photoshop CC", "Premiere Pro CC",
-             "Illustrator CC", "Blender"],
-  "biopic": "images/kevin-frutiger@1x.jpg"
+  "welcomeMessage": "Front-end Web Developer with visual skills. Proficient in scripting languages and multimedia production tools. Experienced collaborating in global, cross-functional teams.",
+  "skills": ["HTML5", "CSS", "Bootstrap", "JavaScript", "jQuery", "Git",
+             "Grunt", "Animate CC", "Photoshop CC", "Premiere Pro CC",
+             "Illustrator CC", "Blender", "Maya"],
+  "biopic": ["images/kevin-frutiger@1x.jpg", "images/kevin-frutiger@2x.jpg"]
 };
 
 /**
@@ -81,14 +72,14 @@ var education = {
       "location": "Wichita, KS",
       "degree": "Bachelor of Fine Arts",
       "majors": ["Graphic Design"],
-      "dates": 2005,
+      "dates": null,
       "url": "http://www.wichita.edu/"
     },{
       "name": "Art Institute of Colorado",
       "location": "Denver, CO",
       "degree": "Associate of Applied Science",
       "majors": ["Computer Animation"],
-      "dates": 1999,
+      "dates": null,
       "url": "https://www.artinstitutes.edu/denver/"
     }],
   "onlineCourses": [{
@@ -99,8 +90,6 @@ var education = {
     }]
 };
 
-// TODO: Replace job descriptions with bulleted lists. Requires display
-// function and helper functions to be updated to accept them.
 /**
  * A JSON object that holds work information.
  * @property {Array.&lt;string>} jobs An array of objects containing information
@@ -111,38 +100,38 @@ var work = {
       "employer": "Google",
       "title": "Technical Vendor Program Manager",
       "location": "San Francisco, CA",
-      "dates": "Oct 2013 – February 2015",
-      "description": "Managed technical vendor programs to support global, top-tier DoubleClick Rich Media and AdWords Display Ad Builder customers."
+      "dates": "2014 – 2015",
+      "description": "&lt;li>Managed support resources for global, top-tier DoubleClick Rich Media and AdWords Display Ad Builder customers&lt;/li>&lt;li>Supported template creation at scale for Google Web Designer’s Start-from-Template release&lt;/li>"
     },{
       "employer": "Google",
       "title": "Creative Technical Specialist",
       "location": "San Francisco, CA",
-      "dates": "Oct 2011 – February 2013",
-      "description": "Provided DoubleClick Studio technical consultation and troubleshooting for creative and media agencies. Created build guides and video training for core and advanced features of Studio to scale support, including Fundamentals, Dynamic Creative, and VPAID."
+      "dates": "2011 – 2014",
+      "description": "&lt;li>Advised agencies on DoubleClick Studio capabilities and provided support to resolve issues (phone / email / tickets)&lt;/li>&lt;li>Conducted weekly Studio Fundamentals webinar to assure success of new Studio users&lt;/li>"
     },{
       "employer": "Google",
       "title": "Rich Media Production Specialist",
       "location": "San Francisco, CA",
-      "dates": "March 2008 – Oct 2013",
-      "description": "Updated clients’ ActionScript for deployment in DoubleClick Studio."
+      "dates": "2008 – 2011",
+      "description": "&lt;li>Revised clients’ ActionScript for DoubleClick Rich Media, with 98% accuracy to delight Campaign Managers and clients&lt;/li>&lt;li>Prototyped tool in Python / Django / App Engine with QA team to increase efficiency of global Rich Media production&lt;/li>"
     },{
       "employer": "Dish Network",
       "title": "Instructional Media Developer",
       "location": "San Francisco, CA",
-      "dates": "Oct 2007 – March 2008",
-      "description": "Created e-learning simulations, interactions, and animations with ActionScript, Flash, Photoshop, and Blender."
+      "dates": "2007 – 2008",
+      "description": "&lt;li>Created simulations and animations with Flash / AS, Photoshop, and Blender to make engaging eLearning courses&lt;/li>"
     },{
       "employer": "CleverMedia",
-      "title": "Flash Game Programmer (contract)",
+      "title": "Flash Game Programmer",
       "location": "Denver, CO",
-      "dates": "March 2007 – Oct 2007",
-      "description": "Utilized ActionScript to realize clients’ game concepts."
+      "dates": "2007",
+      "description": "&lt;li>Utilized ActionScript to realize clients’ game concepts&lt;/li>"
     },{
       "employer": "Active Education",
       "title": "Instructional Media Developer",
       "location": "Denver, CO",
-      "dates": "Oct 2004 – March 2007",
-      "description": "Utilized ActionScript to realize clients’ game concepts."
+      "dates": "2005 – 2007",
+      "description": "&lt;li>Created interactions and animations with Flash / AS and Photoshop to make engaging eLearning courses&lt;/li>"
     }]
 };
 
@@ -153,31 +142,47 @@ var work = {
  */
 var projects = {
   "projects": [{
-      "title": "Project 1",
-      "dates": "2015",
-      "description": "This is Project 1’s description.",
-      "images": ["images/portfolio-thumbnail-placeholder@1x.png",
-                 "images/portfolio-thumbnail-placeholder@1x.png"]
+      "title": "Portfolio",
+      "dates": "2015 – 2016",
+      "description": "Portfolio page built from a mock-up PDF utilizing Bootstrap for a responsive layout.",
+      "images": [["images/portfolio-thumb@1x.png","images/portfolio-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/frontend-nanodegree-portfolio"
     },{
-      "title": "Project 2",
-      "dates": "2015",
-      "description": "This is Project 2’s description.",
-      "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
+      "title": "Résumé",
+      "dates": "2015 – 2016",
+      "description": "Résumé utilizing jQuery and JSON objects for each section. You're viewing this now.",
+      "images": [["images/resume-thumb@1x.png", "images/resume-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/frontend-nanodegree-resume"
     },{
-      "title": "Project 3",
+      "title": "Arcade Game Clone",
       "dates": "2015",
-      "description": "This is Project 3’s description.",
-      "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
+      "description": "Clone of the classic arcade game &lt;em>Frogger&lt;/em> uses pseudo-classical JavaScript OOP to create player and enemy entities.",
+      "images": [["images/arcade-game-thumb@1x.png", "images/arcade-game-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/frontend-nanodegree-arcade-game"
     },{
-      "title": "Project 4",
+      "title": "Website Optimization",
       "dates": "2015",
-      "description": "This is Project 4’s description.",
-      "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
+      "description": "Project to optimize CRP and rendering performance during user interaction.",
+      "images": [["images/web-optimization-thumb@1x.png", "images/web-optimization-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/frontend-nanodegree-web-optimization"
     },{
-      "title": "Project 5",
+      "title": "Neighborhood Map",
       "dates": "2015",
-      "description": "This is Project 5’s description.",
-      "images": ["images/portfolio-thumbnail-placeholder@1x.png"]
+      "description": "Application utilizing Knockout.js to display a filterable list of places as markers on a Google Map.",
+      "images": [["images/neighborhood-map-thumb@1x.png", "images/neighborhood-map-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/frontend-nanodegree-neighborhood-map"
+    },{
+      "title": "Feed Reader Testing",
+      "dates": "2015",
+      "description": "Application utilizing Backbone.js to allow the user to query food items and save a calorie total for the day.",
+      "images": [["images/feed-reader-testing-thumb@1x.png", "images/feed-reader-testing-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/frontend-nanodegree-feed-reader"
+    },{
+      "title": "Health Tracker",
+      "dates": "2016",
+      "description": "Project to write Jasmine tests for an existing RSS feed reading application.",
+      "images": [["images/health-tracker-thumb@1x.png", "images/health-tracker-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/frontend-nanodegree-health-tracker"
     }]
 };
 
@@ -186,7 +191,7 @@ var projects = {
  * @namespace
  */
 var bioView = {
-  // HTML markup to insert data into.
+  // HTML markup to format the data.
   HTMLstrings: {
     headerName: '&lt;h1 id="name">%data%&lt;/h1>',
     headerRole: '&lt;span class="job-title">%data%&lt;/span>&lt;hr/>',
@@ -205,9 +210,9 @@ var bioView = {
            '&lt;span class="contact-item">%data%&lt;/span>&lt;/li>',
     location: '&lt;li class="flex-item">&lt;span class="contact-labels">location' +
                '&lt;/span>&lt;span class="contact-item">%data%&lt;/span>&lt;/li>',
-    bioPic: '&lt;img src="%data%" class="biopic" width="211" height="211">',
+    bioPic: '&lt;img srcset="%data1% 2x" src="%data2%" class="biopic" width="211" height="211" alt="%altTextData%">',
     welcomeMsg: '&lt;p class="welcome-message">%data%&lt;/p>',
-    skillsStart: '&lt;h3 id="skills-h3">Skills at a Glance:&lt;/h3>&lt;ul id="skills">'+
+    skillsStart: '&lt;h2 id="skills-heading">Skills at a Glance:&lt;/h2>&lt;ul id="skills">'+
                   '&lt;/ul>',
     skills: '&lt;li>&lt;span class="skill-text">%data%&lt;/span>&lt;/li>'
   },
@@ -222,7 +227,13 @@ var bioView = {
 
     var formattedName = this.HTMLstrings.headerName.replace('%data%', bio.name);
     var formattedRole = this.HTMLstrings.headerRole.replace('%data%', bio.role);
-    var formattedBioPic = this.HTMLstrings.bioPic.replace('%data%', bio.biopic);
+    var formattedBioPic = '';
+    if (bio.biopic.length) {
+      formattedBioPic = this.HTMLstrings.bioPic;
+      formattedBioPic = this.HTMLstrings.bioPic.replace('%data1%', bio.biopic[1])
+                                               .replace('%data2%', bio.biopic[0])
+                                               .replace('%altTextData%', bio.name);
+    }
     var formattedWelcomeMessage = this.HTMLstrings.welcomeMsg.replace(
                                       '%data%', bio.welcomeMessage);
 
@@ -230,7 +241,8 @@ var bioView = {
 
     // Push formatted strings to the array
     for (var i = 0, len = bio.skills.length; i &lt; len; i++) {
-      formattedSkills.push(this.HTMLstrings.skills.replace('%data%', bio.skills[i]));
+      formattedSkills.push(
+          this.HTMLstrings.skills.replace('%data%', bio.skills[i]));
     }
 
     // Add objects to the page
@@ -239,7 +251,7 @@ var bioView = {
            .prepend(formattedName);
 
     var formattedContacts = this.formatContactList();
-    $('#topContacts').append(formattedContacts.join(''))
+    $('#topContacts').append(formattedContacts.join(''));
 
     $header.append(formattedBioPic)
            .append(formattedWelcomeMessage)
@@ -249,7 +261,7 @@ var bioView = {
   },
 
   /**
-   * Returns array of &amp;lt;li&amp;gt; tags containing contact information.
+   * Returns array of &amp;lt;li&amp;gt; tag strings containing contact information.
    * @memberof bioView
    * @method formatContactList
    * @returns {Array.&lt;strings>}
@@ -260,20 +272,20 @@ var bioView = {
 
     // If the entry isn't blank, format the data and push it to the array.
     if (bio.contacts.mobile) {
-      formattedContacts.push(HTMLmobile.replace('%data%', bio.contacts.mobile));
+      formattedContacts.push(this.HTMLstrings.mobile.replace('%data%', bio.contacts.mobile));
     }
     if (bio.contacts.email) {
-      formattedContacts.push(HTMLemail.replace('%data%', bio.contacts.email));
+      formattedContacts.push(this.HTMLstrings.email.replace('%data%', bio.contacts.email));
     }
     if (bio.contacts.github) {
-      formattedContacts.push(HTMLgithub.replace('%data%', bio.contacts.github));
+      formattedContacts.push(this.HTMLstrings.github.replace('%data%', bio.contacts.github));
     }
     if (bio.contacts.twitter) {
-      formattedContacts.push(HTMLtwitter.replace('%data%', bio.contacts.twitter));
+      formattedContacts.push(this.HTMLstrings.twitter.replace('%data%', bio.contacts.twitter));
     }
     if (bio.contacts.location) {
       formattedContacts.push(
-          HTMLlocation.replace('%data%', bio.contacts.location));
+          this.HTMLstrings.location.replace('%data%', bio.contacts.location));
     }
 
     return formattedContacts;
@@ -285,6 +297,22 @@ var bioView = {
  * @namespace
  */
 var educationView = {
+  // HTML markup to format the data.
+  HTMLstrings: {
+    schoolStart: '&lt;li class="education-entry">&lt;/li>',
+    schoolName: '&lt;h3>&lt;a href="#" target="_blank">%data%',
+    schoolDegree: ' -- %data%&lt;/a>&lt;/h3>',
+    schoolDates: '&lt;div class="date-text">%data%&lt;/div>',
+    schoolLocation: '&lt;div class="location-text">%data%&lt;/div>',
+    schoolMajor: '&lt;em>Major: %data%&lt;/em>',
+    onlineClasses: '&lt;h3 class="online-classes">Online Classes&lt;/h3>',
+    onlineTitle: '&lt;h4>&lt;a href="#" target="_blank">%data%',
+    onlineSchool: ' - %data%&lt;/a>&lt;/h4>',
+    onlineDates: '&lt;div class="date-text">%data%&lt;/div>',
+    onlineURL: '&lt;br>&lt;a href="#" target="_blank">%data%&lt;/a>'
+  },
+
+
   /**
    * Renders the education items to the page.
    * @memberof educationView
@@ -297,66 +325,93 @@ var educationView = {
 
     if (education.schools &amp;&amp; education.schools.length > 0) {
 
+      var $educationList = $('&lt;ul>&lt;/ul>');
+      $educationList.appendTo($education);
+
       for (var i = 0, len = education.schools.length; i &lt; len; i++) {
-        var $school = $(HTMLschoolStart);
-        var obj = education.schools[i];
+        var $school = $(this.HTMLstrings.schoolStart);
+        var school = education.schools[i];
 
         // Format data
-        var formattedName = HTMLschoolName.replace('%data%', obj.name);
-        formattedName = formattedName.replace('#', obj.url);
-        var formattedDegree = HTMLschoolDegree.replace('%data%', obj.degree);
-        var formattedDates = HTMLschoolDates.replace('%data%', obj.dates);
-        var formattedLocation = HTMLschoolLocation.replace(
-                                    '%data%', obj.location);
-        var formattedMajor = HTMLschoolMajor.replace(
-                                 '%data%', obj.majors.join(''));
+        var formattedName = this.HTMLstrings.schoolName.replace(
+                                '%data%', school.name);
+        formattedName = formattedName.replace('#', school.url);
+        var formattedDegree = this.HTMLstrings.schoolDegree.replace(
+                                  '%data%', school.degree);
+        var formattedSchoolDates = '';
+        if (school.dates) {
+          formattedSchoolDates = this.HTMLstrings.schoolDates.replace(
+                                                 '%data%', school.dates);
+        }
+        var formattedLocation = this.HTMLstrings.schoolLocation.replace(
+                                    '%data%', school.location);
+        var formattedMajor = this.HTMLstrings.schoolMajor.replace(
+                                 '%data%', school.majors.join(''));
 
         // Prepare object
         $school.append(formattedName + formattedDegree)
-               .append(formattedDates)
+               .append(formattedSchoolDates)
                .append(formattedLocation)
                .append(formattedMajor);
 
         // Add object to the page
-        $education.append($school);
+        $educationList.append($school);
       }
     }
 
     if (education.onlineCourses &amp;&amp; education.onlineCourses.length > 0) {
 
       // Add the online classes header
-      $education.append(HTMLonlineClasses)
+      $education.append(this.HTMLstrings.onlineClasses);
 
-      for (var i = 0, len = education.onlineCourses.length; i &lt; len; i++) {
-        var $course = $(HTMLschoolStart);
-        var obj = education.onlineCourses[i];
+      var $onlineClassList = $('&lt;ul>&lt;/ul>');
+      $onlineClassList.appendTo($education);
+
+      for (var i2 = 0, len2 = education.onlineCourses.length; i2 &lt; len2; i2++) {
+        var $course = $('&lt;li>&lt;/li>');
+        $course = $(this.HTMLstrings.schoolStart);
+        var course = education.onlineCourses[i2];
 
         // Format data
-        var formattedTitle = HTMLonlineTitle.replace('%data%', obj.title);
-        formattedTitle = formattedTitle.replace('#', obj.url);
-        var formattedSchool = HTMLonlineSchool.replace('%data%', obj.school);
-        var formattedDates = HTMLonlineDates.replace('%data%', obj.dates);
-        var formattedUrl = HTMLonlineURL.replace('%data%', obj.url);
-        formattedUrl = formattedUrl.replace('#', obj.url);
+        var formattedTitle = this.HTMLstrings.onlineTitle.replace(
+                                 '%data%', course.title);
+        formattedTitle = formattedTitle.replace('#', course.url);
+        var formattedSchool = this.HTMLstrings.onlineSchool.replace(
+                                  '%data%', course.school);
+        var formattedCourseDates = this.HTMLstrings.onlineDates.replace(
+                                       '%data%', course.dates);
+        var formattedUrl = this.HTMLstrings.onlineURL.replace(
+                               '%data%', course.url);
+        formattedUrl = formattedUrl.replace('#', course.url);
 
         // Prepare object
         $course.append(formattedTitle + formattedSchool)
-               .append(formattedDates)
+               .append(formattedCourseDates)
                .append(formattedUrl);
 
         // Add object to the page
-        $education.append($course);
+        $onlineClassList.append($course);
       }
     }
   }
 
-}
+};
 
 /**
  * Adds information to the work section.
  * @namespace
  */
 var workView = {
+  // HTML markup to format the data.
+  HTMLstrings: {
+    workStart: '&lt;li class="work-entry">&lt;/li>',
+    workEmployer: '&lt;h3 class="employer-text">%data%',
+    workTitle: ' - %data%&lt;/h3>',
+    workDates: '&lt;div class="date-text">%data%&lt;/div>',
+    workLocation: '&lt;div class="location-text">%data%&lt;/div>',
+    workDescription: '&lt;ul class="work-entry-list">%data%&lt;/ul>'
+  },
+
   /**
    * Renders the work items to the page.
    * @memberof workView
@@ -368,20 +423,25 @@ var workView = {
     // If there are no jobs, stop function execution.
     if (!jobs || jobs.length === 0) return;
 
-    var $workExperience = $('#workExperience .content');
+    var $workExperience = $('#workExperience .content ul');
 
     for (var i = 0, len = jobs.length; i &lt; len; i++) {
       var job = jobs[i];
 
       // Format data
-      var formattedEmployer = HTMLworkEmployer.replace('%data%', job.employer)
-      var formattedWorkTitle = HTMLworkTitle.replace('%data%', job.title);
-      var formattedWorkLocation =  HTMLworkLocation.replace('%data%', job.location);
-      var formattedDates = HTMLworkDates.replace('%data%', job.dates);
-      var formattedDescription = HTMLworkDescription.replace('%data%', job.description);
+      var formattedEmployer = this.HTMLstrings.workEmployer.replace(
+                                  '%data%', job.employer);
+      var formattedWorkTitle = this.HTMLstrings.workTitle.replace(
+                                   '%data%', job.title);
+      var formattedWorkLocation =  this.HTMLstrings.workLocation.replace(
+                                       '%data%', job.location);
+      var formattedDates = this.HTMLstrings.workDates.replace(
+                               '%data%', job.dates);
+      var formattedDescription = this.HTMLstrings.workDescription.replace(
+                                     '%data%', job.description);
 
       // Append the start of the work entry.
-      $workExperience.append(HTMLworkStart);
+      $workExperience.append(this.HTMLstrings.workStart);
 
       // Append objects to the last work entry, which is the empty one we just
       // added.
@@ -393,13 +453,23 @@ var workView = {
 
     }
   }
-}
+};
 
 /**
  * Adds information to the project section.
  * @namespace
  */
 var projectsView = {
+  // HTML markup to format the data.
+  HTMLstrings: {
+    projectStart: '&lt;li class="project-entry col-4">&lt;/li>',
+    projectTitle: '&lt;h3>&lt;a href="#" aria-label="%data% project">%data%&lt;/a>&lt;/h3>',
+    projectDates: '&lt;div class="date-text">%data%&lt;/div>',
+    projectDescription: '&lt;p>%data%&lt;/p>',
+    // These thumbnails are cosmetic, so alt is empty.
+    projectImage: '&lt;img srcset="%data1% 2x" src="%data2%" alt="" >'
+  },
+
   /**
    * Renders the projects to the page.
    * @memberof projectsView
@@ -417,19 +487,29 @@ var projectsView = {
       var project = projects[i];
 
       // Format data
-      var formattedTitle = HTMLprojectTitle.replace('%data%', project.title);
-      var formattedDates = HTMLprojectDates.replace('%data%', project.dates);
-      var formattedDescription = HTMLprojectDescription.replace(
+      var formattedTitle = this.HTMLstrings.projectTitle.replace(
+                               /\%data\%/g, project.title);
+      formattedTitle = formattedTitle.replace(
+                           'href="#"', 'href="' + project.url + '"');
+      var formattedDates = this.HTMLstrings.projectDates.replace(
+                               '%data%', project.dates);
+      var formattedDescription = this.HTMLstrings.projectDescription.replace(
                                      '%data%', project.description);
 
       // Build array of HTML strings for the images
       var formattedImages = [];
       for (var j = 0, jlen = project.images.length; j &lt; jlen; j++) {
-        formattedImages.push(HTMLprojectImage.replace('%data%', project.images[j]));
+        if (project.images.length) {
+          var imgStr = this.HTMLstrings.projectImage;
+          imgStr = imgStr.replace('%data1%', project.images[j][1])
+                         .replace('%data2%', project.images[j][0]);
+          formattedImages.push(imgStr);
+
+        }
       }
 
       // Prepare the object
-      var $project = $(HTMLprojectStart);
+      var $project = $(this.HTMLstrings.projectStart);
       $project.append(formattedTitle)
               .append(formattedDates)
               .append(formattedDescription)
@@ -440,7 +520,7 @@ var projectsView = {
     }
   }
 
-}
+};
 
 /**
  * Adds information to the footer section.
@@ -458,7 +538,7 @@ var footerView = {
       $footer.append(liElementStrings);
     } else {
       console.warn('footer.display() expected array of LI strings. ' +
-                   'Received nothing.')
+                   'Received nothing.');
     }
   }
 
@@ -475,10 +555,26 @@ var mapView = {
    * @method render
    */
   render: function() {
+
+    // Add A11y list of places.
+    var $locationList = $('&lt;ul id="places-list">&lt;/ul>');
+    var locations = controller.locationFinder().sort();
+
+    for (var i = 0, len = locations.length; i &lt; len; i++) {
+      $locationList.append('&lt;li>' + locations[i] + '&lt;/li>');
+    }
+
+    // Add a list for screenreaders. Place before map so screenreaders read
+    // it first.
+    var $mapDiv = $('#mapDiv .content');
+    $mapDiv.append($locationList);
+
     // Add a map.
-    $('#mapDiv .content').append(googleMap);
+    var $mapWrapper = $('&lt;div id=\"map-wrapper\">&lt;/div>');
+    $mapWrapper.append(googleMap);
+    $mapDiv.append($mapWrapper);
   }
-}
+};
 
 /**
  * Main control between data and views.
@@ -507,6 +603,7 @@ var controller = {
 
   /**
    * Returns bio data.
+   * @memberof controller
    * @returns {object}
    */
   getBio: function() {
@@ -515,6 +612,7 @@ var controller = {
 
   /**
    * Returns education data.
+   * @memberof controller
    * @returns {object}
    */
   getEducation: function() {
@@ -523,6 +621,7 @@ var controller = {
 
   /**
    * Returns project data.
+   * @memberof controller
    * @returns {object}
    */
   getProjects: function() {
@@ -531,12 +630,45 @@ var controller = {
 
   /**
    * Returns work data.
+   * @memberof controller
    * @returns {object}
    */
   getWork: function() {
     return work;
+  },
+
+  /**
+   * Returns de-duped array containing current, school, and work locations.
+   * @returns {array}
+   */
+  locationFinder: function() {
+
+    var locations = [];
+
+    // Add the single location property from bio.
+    locations.push(bio.contacts.location);
+
+    // Add the school locations.
+    for (var schoolIndex = 0, schoolLen = education.schools.length;
+         schoolIndex &lt; schoolLen;
+         schoolIndex++) {
+      if (locations.indexOf(education.schools[schoolIndex]) === -1) {
+        locations.push(education.schools[schoolIndex].location);
+      }
+    }
+
+    // Add the work locations.
+    for (var jobsIndex = 0, jobsLen = work.jobs.length;
+         jobsIndex &lt; jobsLen;
+         jobsIndex++) {
+      if (locations.indexOf(work.jobs[jobsIndex].location) === -1) {
+        locations.push(work.jobs[jobsIndex].location);
+      }
+    }
+
+    return locations;
   }
-}
+};
 
 // Initialize the page.
 controller.init();
@@ -556,7 +688,7 @@ controller.init();
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.3</a> on Wed Dec 09 2015 16:45:47 GMT-0800 (Pacific Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.3</a> on Mon May 02 2016 15:36:30 GMT-0700 (Pacific Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
