@@ -119,6 +119,11 @@ a {
   display: block;
 }
 
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
 .welcome-message {
   font-style: italic;
   font-size: 18px;
@@ -241,11 +246,19 @@ ul {
   }
 }
 
-.project-entry img {
+.project-entry > img {
   border: 1px solid #ddd;
   margin: 10px 0 0 0;
   max-width: 294px;
   width: 100%;
+}
+
+.project-entry > .date-text {
+  float: none;
+}
+
+.project-entry > p {
+  margin-top: 10px;
 }
 
 span {

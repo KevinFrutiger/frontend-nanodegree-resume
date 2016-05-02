@@ -115,13 +115,13 @@ var work = {
 var projects = {
   "projects": [{
       "title": "Portfolio",
-      "dates": "2015-2016",
+      "dates": "2015 – 2016",
       "description": "Portfolio page built from a mock-up PDF utilizing Bootstrap for a responsive layout.",
       "images": [["images/portfolio-thumb@1x.png","images/portfolio-thumb@2x.png"]],
       "url": "https://github.com/KevinFrutiger/frontend-nanodegree-portfolio"
     },{
       "title": "Résumé",
-      "dates": "2015-2016",
+      "dates": "2015 – 2016",
       "description": "Résumé utilizing jQuery and JSON objects for each section. You're viewing this now.",
       "images": [["images/resume-thumb@1x.png", "images/resume-thumb@2x.png"]],
       "url": "https://github.com/KevinFrutiger/frontend-nanodegree-resume"
@@ -437,7 +437,7 @@ var projectsView = {
     projectStart: '<li class="project-entry col-4"></li>',
     projectTitle: '<h3><a href="#" aria-label="%data% project">%data%</a></h3>',
     projectDates: '<div class="date-text">%data%</div>',
-    projectDescription: '<p><br>%data%</p>',
+    projectDescription: '<p>%data%</p>',
     // These thumbnails are cosmetic, so alt is empty.
     projectImage: '<img srcset="%data1% 2x" src="%data2%" alt="" >'
   },
