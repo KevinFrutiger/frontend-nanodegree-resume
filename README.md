@@ -2,6 +2,4 @@
 
 <a href="http://kevinfrutiger.github.io/frontend-nanodegree-resume/" target="_blank">View the live page</a>
 
-This was the second project in the _Front-End Web Developer Nanodegree_. The objective was to edit an existing résumé page by forking from an existing codebase on GitHub, adding our data in specific, valid JSON-formatted objects, and adding content to the page with jQuery.
-
-I added additional spice with a new color scheme and some subtle animation, in line with project guidelines.
+This dynamic résumé utilizes an MVC design pattern, JSON-formatted models, and jQuery. It's responsive and accessible. It was originally forked from another repo as part of the _Front-End Web Developer Nanodegree_, so it still retains some of those design elements.
