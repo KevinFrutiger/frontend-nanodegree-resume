@@ -24,10 +24,10 @@ var bio = {
     "twitter": "@KevinFrutiger",
     "location": "South San Francisco, CA, USA"
   },
-  "welcomeMessage": "Front-end Web Developer with visual skills. Proficient in scripting languages and multimedia production tools. Experienced collaborating in global, cross-functional teams.",
+  "welcomeMessage": "Front-end Web Developer with multimedia skills. Proficient in scripting languages and multimedia production tools. Experienced collaborating in global, cross-functional teams.",
   "skills": ["HTML5", "CSS", "Bootstrap", "JavaScript", "jQuery", "Git",
-             "Grunt", "Animate CC", "Photoshop CC", "Premiere Pro CC",
-             "Illustrator CC", "Blender", "Maya"],
+             "Grunt", "Animate", "Photoshop", "Premiere Pro",
+             "Illustrator", "After Effects", "Blender", "Maya"],
   "biopic": ["images/kevin-frutiger@1x.jpg", "images/kevin-frutiger@2x.jpg"]
 };
 
@@ -155,6 +155,12 @@ var projects = {
       "description": "Project to write Jasmine tests for an existing RSS feed reading application.",
       "images": [["images/health-tracker-thumb@1x.png", "images/health-tracker-thumb@2x.png"]],
       "url": "https://github.com/KevinFrutiger/frontend-nanodegree-health-tracker"
+    },{
+      "title": "Neighborhood Map - Backbone",
+      "dates": "2016",
+      "description": "A rebuild of the Knockout.js version of the application with improved accessibility. Utilizes Backbone.js to display a filterable list of places as markers on a Google Map.",
+      "images": [["images/neighborhood-map-thumb@1x.png", "images/neighborhood-map-thumb@2x.png"]],
+      "url": "https://github.com/KevinFrutiger/fend-neighborhood-map-backbone"
     }]
 };
 
